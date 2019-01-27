@@ -22,6 +22,7 @@ namespace AlsekRGB.Client
         public MainMenu()
         {
             MenuController.MenuToggleKey = Control.SelectCharacterMichael;
+            MenuController.EnableMenuToggleKeyOnController = false;
                 
             // Setting the menu alignment to be right aligned. This can be changed at any time and it'll update instantly.
             // To test this, checkout one of the checkbox items in this example menu. Clicking it will toggle the menu alignment.
