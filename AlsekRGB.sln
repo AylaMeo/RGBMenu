@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlsekRGB.Client", "AlsekRGB.Client\AlsekRGB.Client.csproj", "{BD2F2315-2FBC-4CDE-9938-8E50EED64A62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlsekRGB.Server", "AlsekRGB.Server\AlsekRGB.Server.csproj", "{7C2DBB57-D09C-4055-9B4B-2DFD3F847B09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlsekRGB.Shared", "AlsekRGB.Shared\AlsekRGB.Shared.csproj", "{63F14EC5-3E84-4097-BC3A-3531B0D2DBD6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3D9D5482-60F4-45FD-B60E-91E7608E98E6}"
+	ProjectSection(SolutionItems) = preProject
+		__resource.lua = __resource.lua
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD2F2315-2FBC-4CDE-9938-8E50EED64A62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD2F2315-2FBC-4CDE-9938-8E50EED64A62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD2F2315-2FBC-4CDE-9938-8E50EED64A62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD2F2315-2FBC-4CDE-9938-8E50EED64A62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C2DBB57-D09C-4055-9B4B-2DFD3F847B09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C2DBB57-D09C-4055-9B4B-2DFD3F847B09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C2DBB57-D09C-4055-9B4B-2DFD3F847B09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C2DBB57-D09C-4055-9B4B-2DFD3F847B09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63F14EC5-3E84-4097-BC3A-3531B0D2DBD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63F14EC5-3E84-4097-BC3A-3531B0D2DBD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63F14EC5-3E84-4097-BC3A-3531B0D2DBD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63F14EC5-3E84-4097-BC3A-3531B0D2DBD6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1A457918-89E1-46FD-9750-73985E20FA8B}
+	EndGlobalSection
+EndGlobal
