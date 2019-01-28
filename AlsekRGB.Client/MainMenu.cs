@@ -108,7 +108,7 @@ namespace AlsekRGB.Client
                 
                 if (_listItem == RedColor)
                 {
-                    // Get the selected value and remove the "x" in the string with nothing.
+                    // Get the selected value.
                     var value = RedColorList[_newIndex];
                     // Convert the value to a float and set it as a public variable.
                     RedRGB = int.Parse(value); 
@@ -135,7 +135,7 @@ namespace AlsekRGB.Client
                 
                 if (_listItem == BlueColor)
                 {
-                    // Get the selected value and remove the "x" in the string with nothing.
+                    // Get the selected value.
                     var value = BlueColorList[_newIndex];
                     // Convert the value to a float and set it as a public variable.
                     BlueRGB = int.Parse(value);     
@@ -161,7 +161,7 @@ namespace AlsekRGB.Client
                 
                 if (_listItem == GreenColor)
                 {
-                    // Get the selected value and remove the "x" in the string with nothing.
+                    // Get the selected value.
                     var value = GreenColorList[_newIndex];
                     // Convert the value to a float and set it as a public variable.
                     GreenRGB = int.Parse(value);
