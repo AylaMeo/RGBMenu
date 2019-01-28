@@ -12,6 +12,9 @@ namespace AlsekRGB.Client
 {
     public class MainMenu : BaseScript
     {   
+        public static MiscMenu Misc { get; private set; }
+        public static bool DebugMode = false;
+        
         public int RedRGB { get; private set; } = 0;
         public int BlueRGB { get; private set; } = 0;
         public int GreenRGB { get; private set; } = 0;
@@ -76,19 +79,18 @@ namespace AlsekRGB.Client
                      Paint
             ########################################################
             */  
-            
-
-            
-            //Box for changing menu spot
-            MenuCheckboxItem box = new MenuCheckboxItem("Right Align Menu", "This will change the menu to appear on the left", !Color.LeftAligned)
+           
+            //Adding the misc sub menu
             {
-                Style = MenuCheckboxItem.CheckboxStyle.Tick
-            };
-            Color.AddMenuItem(box);
-            //Box for changing menu spot
-            
-            // Adding a new button by directly creating one inline. You could also just store it and then add it but we don't need to do that in this example.
-            Color.AddMenuItem(new MenuItem("MenuAPI is made by Vespura", "Full credit to him otherwise this wouldn't be possible!"));
+                Misc = new MiscMenu();
+                Menu MiscMenu = Misc.GetMenu();
+                MenuItem MiscButton = new MenuItem("Miscellaneous & Credits", "Miscellaneous stuff")
+                {
+                    Label = "→→→"
+                };
+                Color.AddMenuItem(MiscButton);
+                MenuController.BindMenuItem(Color, MiscMenu, MiscButton);
+            }
 
             /*
              ########################################################
@@ -99,15 +101,17 @@ namespace AlsekRGB.Client
             Color.OnListIndexChange += (_menu, _listItem, _oldIndex, _newIndex, _itemIndex) =>
             {
                 // Code in here would get executed whenever the selected value of a list item changes (when left/right key is pressed).
-                Debug.WriteLine($"OnListIndexChange: [{_menu}, {_listItem}, {_oldIndex}, {_newIndex}, {_itemIndex}]");
+                if (DebugMode == true)
+                {
+                    Debug.WriteLine($"OnListIndexChange: [{_menu}, {_listItem}, {_oldIndex}, {_newIndex}, {_itemIndex}]");
+                }
                 
                 if (_listItem == RedColor)
                 {
                     // Get the selected value and remove the "x" in the string with nothing.
                     var value = RedColorList[_newIndex];
                     // Convert the value to a float and set it as a public variable.
-                    RedRGB = int.Parse(value);
-                    Debug.Write($"{RedRGB}");
+                    RedRGB = int.Parse(value); 
 
                     if (ApplyColorPrimary == true)
                     {
@@ -118,6 +122,10 @@ namespace AlsekRGB.Client
                     {
                         var PlayerVehicle = GetPlayersLastVehicle();
                         SetVehicleCustomSecondaryColour(PlayerVehicle, RedRGB, BlueRGB, GreenRGB);
+                    }
+                    if (MainMenu.DebugMode == true)
+                    {
+                        Debug.Write($"{RedRGB}");
                     }
                     else
                     {
@@ -130,9 +138,7 @@ namespace AlsekRGB.Client
                     // Get the selected value and remove the "x" in the string with nothing.
                     var value = BlueColorList[_newIndex];
                     // Convert the value to a float and set it as a public variable.
-                    BlueRGB = int.Parse(value);
-                    Debug.Write($"{BlueRGB}");
-
+                    BlueRGB = int.Parse(value);     
                     if (ApplyColorPrimary == true)
                     {
                         var PlayerVehicle = GetPlayersLastVehicle();
@@ -142,6 +148,10 @@ namespace AlsekRGB.Client
                     {
                         var PlayerVehicle = GetPlayersLastVehicle();
                         SetVehicleCustomSecondaryColour(PlayerVehicle, RedRGB, BlueRGB, GreenRGB);
+                    }
+                    if (DebugMode == true)
+                    {
+                        Debug.Write($"{BlueRGB}");
                     }
                     else
                     {
@@ -155,7 +165,6 @@ namespace AlsekRGB.Client
                     var value = GreenColorList[_newIndex];
                     // Convert the value to a float and set it as a public variable.
                     GreenRGB = int.Parse(value);
-                    Debug.Write($"{GreenRGB}");
 
                     if (ApplyColorPrimary == true)
                     {
@@ -166,6 +175,10 @@ namespace AlsekRGB.Client
                     {
                         var PlayerVehicle = GetPlayersLastVehicle();
                         SetVehicleCustomSecondaryColour(PlayerVehicle, RedRGB, BlueRGB, GreenRGB);
+                    }
+                    if (DebugMode == true)
+                    {
+                        Debug.Write($"{GreenRGB}");
                     }
                     else
                     {
@@ -178,8 +191,10 @@ namespace AlsekRGB.Client
             Color.OnCheckboxChange += (_menu, _item, _index, _checked) =>
             {
                 // Code in here gets executed whenever a checkbox is toggled.
-                Debug.WriteLine($"OnCheckboxChange: [{_menu}, {_item}, {_index}, {_checked}]");
-   
+                if (DebugMode == true)
+                {
+                    Debug.WriteLine($"OnCheckboxChange: [{_menu}, {_item}, {_index}, {_checked}]");
+                }
                 if (_item == paintPrimary)
                 {
                     if (_checked)
@@ -207,32 +222,26 @@ namespace AlsekRGB.Client
                         ApplyColorSecondary = false;
                     }
                 }
-                
-                // If the align-menu checkbox is toggled, toggle the menu alignment.
-                if (_item == box)
-                {
-                    if (_checked)
-                    {
-                        MenuController.MenuAlignment = MenuController.MenuAlignmentOption.Right;
-                    }
-                    else
-                    {
-                        MenuController.MenuAlignment = MenuController.MenuAlignmentOption.Left;
-                    }
-                }
             };
 
 
             Color.OnMenuClose += (_menu) =>
             {
-                // Code in here gets triggered whenever the menu is closed.
-                Debug.WriteLine($"OnMenuClose: [{_menu}]");
+                if (MainMenu.DebugMode == true)
+                {
+                    // Code in here gets triggered whenever the menu is closed.
+                    Debug.WriteLine($"OnMenuClose: [{_menu}]");
+                }
+
             };
 
             Color.OnMenuOpen += (_menu) =>
             {
-                // Code in here gets triggered whenever the menu is opened.
-                Debug.WriteLine($"OnMenuOpen: [{_menu}]");
+                if (MainMenu.DebugMode == true)
+                {
+                    // Code in here gets triggered whenever the menu is opened.
+                    Debug.WriteLine($"OnMenuOpen: [{_menu}]");
+                }
             };    
         }
     }
