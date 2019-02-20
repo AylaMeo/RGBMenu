@@ -14,7 +14,7 @@ namespace AlsekRGB.Client
         
         public static PaintMenu Paint { get; private set; }
         public static MiscMenu Misc { get; private set; }
-        public static bool DebugMode = true;
+        public static bool DebugMode = false;
 
         public MainMenu()
         {
