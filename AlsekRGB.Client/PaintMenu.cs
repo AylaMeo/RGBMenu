@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using CitizenFX.Core;
 using CitizenFX.Core.UI;
 using static CitizenFX.Core.Native.API;
@@ -34,14 +33,14 @@ namespace AlsekRGB.Client
                                  Paint
             */       
             //Box for applying primary paint
-            MenuCheckboxItem paintPrimary = new MenuCheckboxItem("Apply primary RGB", "This will make your paint apply as you change it")
+            MenuCheckboxItem paintPrimary = new MenuCheckboxItem("Apply primary RGB", "This will make your paint apply as you change it", ApplyColorPrimary)
             {
                 Style = MenuCheckboxItem.CheckboxStyle.Tick
             };
             Paint.AddMenuItem(paintPrimary);
             //Box for applying primary paint
             //Box for applying secondary paint
-            MenuCheckboxItem paintSecondary = new MenuCheckboxItem("Apply secondary RGB", "This will make your paint apply as you change it")
+            MenuCheckboxItem paintSecondary = new MenuCheckboxItem("Apply secondary RGB", "This will make your paint apply as you change it", ApplyColorSecondary)
             {
                 Style = MenuCheckboxItem.CheckboxStyle.Tick
             };
@@ -178,7 +177,6 @@ namespace AlsekRGB.Client
             MenuDynamicListItem BlueDynList = new MenuDynamicListItem("Blue", "0", BlueDyn, "Set the Blue in RGB.");
             Paint.AddMenuItem(BlueDynList);
             // Blue Dynamic List
-            
             /*
                      Paint
             ########################################################

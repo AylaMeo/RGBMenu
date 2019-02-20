@@ -1,6 +1,4 @@
-using System.Threading.Tasks;
 using CitizenFX.Core;
-using static CitizenFX.Core.Native.API;
 using MenuAPI;
 
 namespace AlsekRGB.Client
@@ -12,12 +10,15 @@ namespace AlsekRGB.Client
         public static bool DisableControls { get { return MenuController.DisableMenuButtons; } set { MenuController.DisableMenuButtons = value; } }
         //Menu Variables
         
+        public static NeonMenu Neon { get; private set; }
         public static PaintMenu Paint { get; private set; }
         public static MiscMenu Misc { get; private set; }
         public static bool DebugMode = false;
 
         public MainMenu()
         {
+            Tick += NeonMenu.ProcessTask;
+            
             MenuController.MenuToggleKey = Control.SelectCharacterMichael;
             MenuController.EnableMenuToggleKeyOnController = false;
                 
@@ -39,6 +40,18 @@ namespace AlsekRGB.Client
                 };
                 Color.AddMenuItem(PaintButton);
                 MenuController.BindMenuItem(Color, PaintMenu, PaintButton);
+            }
+            
+            //Adding the neon sub menu
+            {
+                Neon = new NeonMenu();
+                Menu NeonMenu = Neon.GetMenu();
+                MenuItem NeonButton = new MenuItem("Neons", "Neons are hot")
+                {
+                    Label = "→→→"
+                };
+                Color.AddMenuItem(NeonButton);
+                MenuController.BindMenuItem(Color, NeonMenu, NeonButton);
             }
             
             //Adding the misc sub menu
