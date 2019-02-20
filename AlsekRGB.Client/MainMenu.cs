@@ -10,6 +10,7 @@ namespace AlsekRGB.Client
         public static bool DisableControls { get { return MenuController.DisableMenuButtons; } set { MenuController.DisableMenuButtons = value; } }
         //Menu Variables
         
+        public static CommandMenu Commands { get; private set; }
         public static NeonMenu Neon { get; private set; }
         public static PaintMenu Paint { get; private set; }
         public static MiscMenu Misc { get; private set; }
@@ -64,6 +65,18 @@ namespace AlsekRGB.Client
                 };
                 Color.AddMenuItem(MiscButton);
                 MenuController.BindMenuItem(Color, MiscMenu, MiscButton);
+            }
+            
+            //Adding the commands sub menu
+            {
+                Commands = new CommandMenu();
+                Menu CommandMenu = Commands.GetMenu();
+                MenuItem CommandButton = new MenuItem("Command Docs", "List of commands")
+                {
+                    Label = "→→→"
+                };
+                Color.AddMenuItem(CommandButton);
+                MenuController.BindMenuItem(Color, CommandMenu, CommandButton);
             }
             
             /*

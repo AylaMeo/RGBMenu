@@ -11,9 +11,14 @@ namespace AlsekRGB.Client
         public Commands()
         {
             API.RegisterCommand("RGBPaint", new Action<int, List<object>, string>((source, arguments, raw) =>
-                {
-                    RGBPaint();
-                }), false);
+            {
+                RGBPaint();
+            }), false);
+            
+            API.RegisterCommand("NeonRate", new Action<int, List<object>, string>((source, arguments, raw) =>
+            {
+                NeonRate();
+            }), false);
         }
 
         public static async void RGBPaint()
@@ -29,12 +34,35 @@ namespace AlsekRGB.Client
 
                 if (MainMenu.DebugMode == true)
                 {
-                    Debug.Write($"R{RedRGB}/G{GreenRGB}/B{BlueRGB}");
+                    Debug.Write($"R:{RedRGB}/G:{GreenRGB}/B:{BlueRGB}");
                 }
 
                 PaintMenu.RedRGB = RedRGB;
                 PaintMenu.GreenRGB = GreenRGB;
                 PaintMenu.BlueRGB = BlueRGB;
+            }
+            else
+            {
+                if (MainMenu.DebugMode == true)
+                {
+                    Screen.ShowNotification("Error: Field was empty (or other error)");
+                }
+            }
+        }
+        
+        public static async void NeonRate()
+        {
+            string result = await Functions.GetUserInput(windowTitle: "Enter the rate of the neons)");
+
+            if (!string.IsNullOrEmpty(result))
+            {
+                var NeonRate = int.Parse(result);
+
+                if (MainMenu.DebugMode == true)
+                {
+                    Debug.Write($"Rate:{NeonRate}");
+                }
+                NeonMenu.AwaitDelayVar = NeonRate;
             }
             else
             {

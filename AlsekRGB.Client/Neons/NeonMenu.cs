@@ -14,18 +14,25 @@ namespace AlsekRGB.Client
         
         public static int PlayerVehicle;
         
-        public static bool NeonsRainbowVar { get; private set; } = false;
+        public static bool NeonsRainbowVar1 { get; private set; } = false;
+        public static bool NeonsRainbowVar2 { get; private set; } = false;
         public static int AwaitDelayVar = 300;
 
         private void CreateMenu()
         {
             Neons = new Menu("Neons", "Neons are hot");
             
-            MenuCheckboxItem NeonsRainbow = new MenuCheckboxItem("Neon Rainbow Circle", "Makes the neons rainbow and circle the vehicle you are in", NeonsRainbowVar)
+            MenuCheckboxItem NeonsRainbow = new MenuCheckboxItem("Neon Rainbow Circle", "Makes the neons rainbow and circle the vehicle you are in", NeonsRainbowVar1)
             {
                 Style = MenuCheckboxItem.CheckboxStyle.Tick
             };
             Neons.AddMenuItem(NeonsRainbow);
+            
+            MenuCheckboxItem NeonsRainbow2 = new MenuCheckboxItem("Neon Rainbow Circle 2", "A slightly different circle option", NeonsRainbowVar2)
+            {
+                Style = MenuCheckboxItem.CheckboxStyle.Tick
+            };
+            Neons.AddMenuItem(NeonsRainbow2);
             
             // AwaitDelay Dynamic List
             string AwaitDelayDyn(MenuDynamicListItem item, bool left)
@@ -88,11 +95,24 @@ namespace AlsekRGB.Client
                     if (_checked)
                     {
                         PlayerVehicle = GetVehiclePedIsUsing(PlayerPedId());
-                        NeonsRainbowVar = true;
+                        NeonsRainbowVar1 = true;
                     }
                     else
                     {
-                        NeonsRainbowVar = false;
+                        NeonsRainbowVar1 = false;
+                    }
+                }
+                
+                if (_item == NeonsRainbow2)
+                {
+                    if (_checked)
+                    {
+                        PlayerVehicle = GetVehiclePedIsUsing(PlayerPedId());
+                        NeonsRainbowVar2 = true;
+                    }
+                    else
+                    {
+                        NeonsRainbowVar2 = false;
                     }
                 }
             };
@@ -110,7 +130,7 @@ namespace AlsekRGB.Client
         public static async Task ProcessTask()
         {
             await Delay(0);
-            if (NeonsRainbowVar == true)
+            if (NeonsRainbowVar1 == true)
             {
                 SetVehicleNeonLightsColour(PlayerVehicle, NeonColor.RedNeon1, NeonColor.GreenNeon1, NeonColor.BlueNeon1);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 0, true);
@@ -131,8 +151,34 @@ namespace AlsekRGB.Client
                 SetVehicleNeonLightEnabled(PlayerVehicle, 3, true);
                 await Delay(AwaitDelayVar);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 3, false);
-                //setting neons back to white
-                //SetVehicleNeonLightsColour(PlayerVehicle, 222, 222, 255);
+            }
+            if (NeonsRainbowVar2 == true)
+            {
+
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonColor.RedNeon1, NeonColor.GreenNeon1, NeonColor.BlueNeon1);
+                SetVehicleNeonLightEnabled(PlayerVehicle, 0, true);
+                await Delay(AwaitDelayVar);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonColor.RedNeon2, NeonColor.GreenNeon2, NeonColor.BlueNeon2);
+                SetVehicleNeonLightEnabled(PlayerVehicle, 2, true);
+                await Delay(AwaitDelayVar);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonColor.RedNeon3, NeonColor.GreenNeon3, NeonColor.BlueNeon3);
+                SetVehicleNeonLightEnabled(PlayerVehicle, 1, true);
+                await Delay(AwaitDelayVar);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonColor.RedNeon4, NeonColor.GreenNeon4, NeonColor.BlueNeon4);
+                SetVehicleNeonLightEnabled(PlayerVehicle, 3, true);
+                await Delay(AwaitDelayVar);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonColor.RedNeon1, NeonColor.GreenNeon1, NeonColor.BlueNeon1);
+                SetVehicleNeonLightEnabled(PlayerVehicle, 0, false);
+                await Delay(AwaitDelayVar);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonColor.RedNeon2, NeonColor.GreenNeon2, NeonColor.BlueNeon2);
+                SetVehicleNeonLightEnabled(PlayerVehicle, 2, false);
+                await Delay(AwaitDelayVar);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonColor.RedNeon3, NeonColor.GreenNeon3, NeonColor.BlueNeon3);
+                SetVehicleNeonLightEnabled(PlayerVehicle, 1, false);
+                await Delay(AwaitDelayVar);
+                SetVehicleNeonLightEnabled(PlayerVehicle, 3, false);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonColor.RedNeon2, NeonColor.GreenNeon2, NeonColor.BlueNeon2);
+
             }
         }
     }

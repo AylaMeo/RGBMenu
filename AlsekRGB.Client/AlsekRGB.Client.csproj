@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandMenu.cs" />
     <Compile Include="Commands.cs" />
     <Compile Include="Functions.cs" />
     <Compile Include="MainMenu.cs" />
