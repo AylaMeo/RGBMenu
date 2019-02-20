@@ -13,9 +13,9 @@ namespace AlsekRGB.Client
         //menu variables
         
         //color variables
-        public static int RedRGB { get; private set; } = 0;
-        public static int BlueRGB { get; private set; } = 0;
-        public static int GreenRGB { get; private set; } = 0;
+        public static int RedRGB = 0;
+        public static int BlueRGB = 0;
+        public static int GreenRGB = 0;
         public bool ApplyColorPrimary { get; private set; } = false;
         public bool ApplyColorSecondary { get; private set; } = false;
         //color variables

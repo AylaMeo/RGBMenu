@@ -9,6 +9,9 @@ namespace AlsekRGB.Client
     public class NeonMenu : BaseScript
     {
         private Menu Neons;
+        
+        public static NeonChanger NeonColor { get; private set; }
+        
         public static int PlayerVehicle;
         
         public static bool NeonsRainbowVar { get; private set; } = false;
@@ -32,11 +35,11 @@ namespace AlsekRGB.Client
                     var newvalue = AwaitDelayVar - 1;
                     if (newvalue < 0)
                     {
-                        newvalue = AwaitDelayVar = 255;
+                        newvalue = AwaitDelayVar = 300;
                         
                         if (MainMenu.DebugMode == true)
                         {
-                            Screen.ShowNotification($"AlsekRGB: Min value allowed for ~b~Red~w~ is 0");
+                            Screen.ShowNotification($"AlsekRGB: Min value allowed for ~b~Rate~w~ is 0");
                         }
                     }
                     else
@@ -47,19 +50,7 @@ namespace AlsekRGB.Client
                 else
                 {
                     var newvalue = AwaitDelayVar + 1;
-                    if (newvalue > 255)
-                    {
-                        newvalue = AwaitDelayVar = 0;
-
-                        if (MainMenu.DebugMode == true)
-                        {
-                            Screen.ShowNotification($"AlsekRGB: Max value allowed for ~b~Red~w~ is 255");
-                        }
-                    }
-                    else
-                    {
-                        AwaitDelayVar = newvalue;
-                    }
+                    AwaitDelayVar = newvalue;
                 }
                 return AwaitDelayVar.ToString();
             }
@@ -67,6 +58,17 @@ namespace AlsekRGB.Client
             Neons.AddMenuItem(AwaitDelayList);
             // AwaitDelay Dynamic List
             
+            //Adding the paint sub menu
+            {
+                NeonColor = new NeonChanger();
+                Menu NeonChanger = NeonColor.GetMenu();
+                MenuItem PaintButton = new MenuItem("Neon Color Picker", "Neon fine tuning")
+                {
+                    Label = "→→→"
+                };
+                Neons.AddMenuItem(PaintButton);
+                MenuController.BindMenuItem(Neons, NeonChanger, PaintButton);
+            }
             
             /*
             ########################################################
@@ -110,27 +112,27 @@ namespace AlsekRGB.Client
             await Delay(0);
             if (NeonsRainbowVar == true)
             {
-                SetVehicleNeonLightsColour(PlayerVehicle, 222, 222, 255);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonColor.RedNeon1, NeonColor.GreenNeon1, NeonColor.BlueNeon1);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 0, true);
                 await Delay(AwaitDelayVar);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 0, false);
                 await Delay(AwaitDelayVar);
-                SetVehicleNeonLightsColour(PlayerVehicle, 3, 83, 255);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonColor.RedNeon2, NeonColor.GreenNeon2, NeonColor.BlueNeon2);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 2, true);
                 await Delay(AwaitDelayVar);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 2, false);
                 await Delay(AwaitDelayVar);
-                SetVehicleNeonLightsColour(PlayerVehicle, 0, 250, 140);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonColor.RedNeon3, NeonColor.GreenNeon3, NeonColor.BlueNeon3);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 1, true);
                 await Delay(AwaitDelayVar);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 1, false);
                 await Delay(AwaitDelayVar);
-                SetVehicleNeonLightsColour(PlayerVehicle, 255, 255, 0);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonColor.RedNeon4, NeonColor.GreenNeon4, NeonColor.BlueNeon4);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 3, true);
                 await Delay(AwaitDelayVar);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 3, false);
                 //setting neons back to white
-                SetVehicleNeonLightsColour(PlayerVehicle, 222, 222, 255);
+                //SetVehicleNeonLightsColour(PlayerVehicle, 222, 222, 255);
             }
         }
     }
