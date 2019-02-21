@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using MenuAPI;
 using static CitizenFX.Core.Native.API;
@@ -17,6 +18,23 @@ namespace AlsekRGB.Client
         public static bool NeonsRainbowVar1 { get; private set; } = false;
         public static bool NeonsRainbowVar2 { get; private set; } = false;
         public static int AwaitDelayVar = 300;
+        
+        
+        public static int RedNeon1 = 222;
+        public static int GreenNeon1 = 222;
+        public static int BlueNeon1 = 255;
+        
+        public static int RedNeon2 = 3;
+        public static int GreenNeon2 = 83;
+        public static int BlueNeon2 = 255;
+         
+        public static int RedNeon3 = 0;
+        public static int GreenNeon3 = 250;
+        public static int BlueNeon3 = 140;
+       
+        public static int RedNeon4 = 255;
+        public static int GreenNeon4 = 255;
+        public static int BlueNeon4 = 0;
 
         private void CreateMenu()
         {
@@ -65,11 +83,11 @@ namespace AlsekRGB.Client
             Neons.AddMenuItem(AwaitDelayList);
             // AwaitDelay Dynamic List
             
-            //Adding the paint sub menu
+            //Adding the neon changer sub menu
             {
                 NeonColor = new NeonChanger();
                 Menu NeonChanger = NeonColor.GetMenu();
-                MenuItem PaintButton = new MenuItem("Neon Color Picker", "Neon fine tuning")
+                MenuItem PaintButton = new MenuItem("Neon Color Picker", "Neon fine tuning !!THESE DO NOT TAKE EFFECT UNLESS YOU CYCLE ONE OF THE NEON MODES!!")
                 {
                     Label = "→→→"
                 };
@@ -82,6 +100,20 @@ namespace AlsekRGB.Client
                                 Event handlers
             ########################################################
             */
+            Neons.OnDynamicListItemSelect += (_menu, _dynamicListItem, _currentItem) =>
+            {
+                // Code in here would get executed whenever a dynamic list item is pressed.
+                if (MainMenu.DebugMode == true)
+                {
+                    Debug.WriteLine($"OnDynamicListItemSelect: [{_menu}, {_dynamicListItem}, {_currentItem}]");
+                }
+
+                if (_dynamicListItem == AwaitDelayList)
+                {
+                    RateInput(1);
+                }
+            };
+            
             Neons.OnCheckboxChange += (_menu, _item, _index, _checked) =>
             {
                 // Code in here gets executed whenever a checkbox is toggled.
@@ -118,6 +150,70 @@ namespace AlsekRGB.Client
             };
         }
         
+        #region PaintInput
+        public static async void RateInput(int Type)
+        {
+            string result = await Functions.GetUserInput(windowTitle: "Enter a number between 0 and 1000", maxInputLength: 4);
+
+            if (!string.IsNullOrEmpty(result))
+            {
+                int resultint = 0;
+                Int32.TryParse(result, out resultint);
+
+                #region Debug
+                if (MainMenu.DebugMode == true)
+                {
+                    if (Type == 1)
+                    {
+                        Debug.Write($"Result:{resultint}/RedRGB:{AwaitDelayVar}");
+                    }
+                }
+                #endregion
+                
+                if (resultint < 0)
+                {
+                    if (Type == 1)
+                    {
+                        Screen.ShowNotification($"AlsekRGB: Min value allowed for ~b~Rate~w~ is 0");
+                    }
+                }
+                if (resultint > 1000)
+                {
+                    if (Type == 1)
+                    {
+                        Screen.ShowNotification($"AlsekRGB: Max value allowed for ~b~Rate~w~ is 1000");
+                    }
+                }
+                else
+                {
+                    if (Type == 1)
+                    {
+                        AwaitDelayVar = resultint;
+                    }
+
+                    if (MainMenu.DebugMode == true)
+                    {
+                        if (Type == 1)
+                        {
+                            Debug.Write($"{AwaitDelayVar}");
+                        }
+                    }
+                    else
+                    {
+                        return;
+                    }  
+                }
+            }
+            else
+            {
+                if (MainMenu.DebugMode == true)
+                {
+                    Screen.ShowNotification("Error: Field was empty (or other error)");
+                }
+            }    
+        }
+        #endregion
+        
         public Menu GetMenu()
         {
             if (Neons == null)
@@ -132,22 +228,22 @@ namespace AlsekRGB.Client
             await Delay(0);
             if (NeonsRainbowVar1 == true)
             {
-                SetVehicleNeonLightsColour(PlayerVehicle, NeonColor.RedNeon1, NeonColor.GreenNeon1, NeonColor.BlueNeon1);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonMenu.RedNeon1, NeonMenu.GreenNeon1, NeonMenu.BlueNeon1);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 0, true);
                 await Delay(AwaitDelayVar);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 0, false);
                 await Delay(AwaitDelayVar);
-                SetVehicleNeonLightsColour(PlayerVehicle, NeonColor.RedNeon2, NeonColor.GreenNeon2, NeonColor.BlueNeon2);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonMenu.RedNeon2, NeonMenu.GreenNeon2, NeonMenu.BlueNeon2);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 2, true);
                 await Delay(AwaitDelayVar);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 2, false);
                 await Delay(AwaitDelayVar);
-                SetVehicleNeonLightsColour(PlayerVehicle, NeonColor.RedNeon3, NeonColor.GreenNeon3, NeonColor.BlueNeon3);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonMenu.RedNeon3, NeonMenu.GreenNeon3, NeonMenu.BlueNeon3);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 1, true);
                 await Delay(AwaitDelayVar);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 1, false);
                 await Delay(AwaitDelayVar);
-                SetVehicleNeonLightsColour(PlayerVehicle, NeonColor.RedNeon4, NeonColor.GreenNeon4, NeonColor.BlueNeon4);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonMenu.RedNeon4, NeonMenu.GreenNeon4, NeonMenu.BlueNeon4);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 3, true);
                 await Delay(AwaitDelayVar);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 3, false);
@@ -155,29 +251,29 @@ namespace AlsekRGB.Client
             if (NeonsRainbowVar2 == true)
             {
 
-                SetVehicleNeonLightsColour(PlayerVehicle, NeonColor.RedNeon1, NeonColor.GreenNeon1, NeonColor.BlueNeon1);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonMenu.RedNeon1, NeonMenu.GreenNeon1, NeonMenu.BlueNeon1);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 0, true);
                 await Delay(AwaitDelayVar);
-                SetVehicleNeonLightsColour(PlayerVehicle, NeonColor.RedNeon2, NeonColor.GreenNeon2, NeonColor.BlueNeon2);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonMenu.RedNeon2, NeonMenu.GreenNeon2, NeonMenu.BlueNeon2);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 2, true);
                 await Delay(AwaitDelayVar);
-                SetVehicleNeonLightsColour(PlayerVehicle, NeonColor.RedNeon3, NeonColor.GreenNeon3, NeonColor.BlueNeon3);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonMenu.RedNeon3, NeonMenu.GreenNeon3, NeonMenu.BlueNeon3);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 1, true);
                 await Delay(AwaitDelayVar);
-                SetVehicleNeonLightsColour(PlayerVehicle, NeonColor.RedNeon4, NeonColor.GreenNeon4, NeonColor.BlueNeon4);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonMenu.RedNeon4, NeonMenu.GreenNeon4, NeonMenu.BlueNeon4);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 3, true);
                 await Delay(AwaitDelayVar);
-                SetVehicleNeonLightsColour(PlayerVehicle, NeonColor.RedNeon1, NeonColor.GreenNeon1, NeonColor.BlueNeon1);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonMenu.RedNeon1, NeonMenu.GreenNeon1, NeonMenu.BlueNeon1);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 0, false);
                 await Delay(AwaitDelayVar);
-                SetVehicleNeonLightsColour(PlayerVehicle, NeonColor.RedNeon2, NeonColor.GreenNeon2, NeonColor.BlueNeon2);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonMenu.RedNeon2, NeonMenu.GreenNeon2, NeonMenu.BlueNeon2);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 2, false);
                 await Delay(AwaitDelayVar);
-                SetVehicleNeonLightsColour(PlayerVehicle, NeonColor.RedNeon3, NeonColor.GreenNeon3, NeonColor.BlueNeon3);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonMenu.RedNeon3, NeonMenu.GreenNeon3, NeonMenu.BlueNeon3);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 1, false);
                 await Delay(AwaitDelayVar);
                 SetVehicleNeonLightEnabled(PlayerVehicle, 3, false);
-                SetVehicleNeonLightsColour(PlayerVehicle, NeonColor.RedNeon2, NeonColor.GreenNeon2, NeonColor.BlueNeon2);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonMenu.RedNeon2, NeonMenu.GreenNeon2, NeonMenu.BlueNeon2);
 
             }
         }

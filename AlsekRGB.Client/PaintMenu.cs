@@ -192,17 +192,17 @@ namespace AlsekRGB.Client
 
                 if (_dynamicListItem == RedDynList)
                 {
-                    RedInput();
+                    PaintInput(1);
                 }
                 
                 if (_dynamicListItem == GreenDynList)
                 {
-                    GreenInput();
+                    PaintInput(2);
                 }
                 
                 if (_dynamicListItem == BlueDynList)
                 {
-                    BlueInput();
+                    PaintInput(3);
                 }
             };
             
@@ -220,12 +220,12 @@ namespace AlsekRGB.Client
                     if (ApplyColorPrimary == true)
                     {
                         var PlayerVehicle = GetPlayersLastVehicle();
-                        SetVehicleCustomPrimaryColour(PlayerVehicle, RedRGB, BlueRGB, GreenRGB);
+                        SetVehicleCustomPrimaryColour(PlayerVehicle, RedRGB, GreenRGB, BlueRGB);
                     }
                     if (ApplyColorSecondary == true)
                     {
                         var PlayerVehicle = GetPlayersLastVehicle();
-                        SetVehicleCustomSecondaryColour(PlayerVehicle, RedRGB, BlueRGB, GreenRGB);
+                        SetVehicleCustomSecondaryColour(PlayerVehicle, RedRGB, GreenRGB, BlueRGB);
                     }
                     if (MainMenu.DebugMode == true)
                     {
@@ -242,12 +242,12 @@ namespace AlsekRGB.Client
                     if (ApplyColorPrimary == true)
                     {
                         var PlayerVehicle = GetPlayersLastVehicle();
-                        SetVehicleCustomPrimaryColour(PlayerVehicle, RedRGB, BlueRGB, GreenRGB);
+                        SetVehicleCustomPrimaryColour(PlayerVehicle, RedRGB, GreenRGB, BlueRGB);
                     }
                     if (ApplyColorSecondary == true)
                     {
                         var PlayerVehicle = GetPlayersLastVehicle();
-                        SetVehicleCustomSecondaryColour(PlayerVehicle, RedRGB, BlueRGB, GreenRGB);
+                        SetVehicleCustomSecondaryColour(PlayerVehicle, RedRGB, GreenRGB, BlueRGB);
                     }
                     if (MainMenu.DebugMode == true)
                     {
@@ -264,12 +264,12 @@ namespace AlsekRGB.Client
                     if (ApplyColorPrimary == true)
                     {
                         var PlayerVehicle = GetPlayersLastVehicle();
-                        SetVehicleCustomPrimaryColour(PlayerVehicle, RedRGB, BlueRGB, GreenRGB);
+                        SetVehicleCustomPrimaryColour(PlayerVehicle, RedRGB, GreenRGB, BlueRGB);
                     }
                     if (ApplyColorSecondary == true)
                     {
                         var PlayerVehicle = GetPlayersLastVehicle();
-                        SetVehicleCustomSecondaryColour(PlayerVehicle, RedRGB, BlueRGB, GreenRGB);
+                        SetVehicleCustomSecondaryColour(PlayerVehicle, RedRGB, GreenRGB, BlueRGB);
                     }
                     if (MainMenu.DebugMode == true)
                     {
@@ -295,7 +295,7 @@ namespace AlsekRGB.Client
                     {
                         ApplyColorPrimary = true;
                         var PlayerVehicle = GetPlayersLastVehicle();
-                        SetVehicleCustomPrimaryColour(PlayerVehicle, RedRGB, BlueRGB, GreenRGB);
+                        SetVehicleCustomPrimaryColour(PlayerVehicle, RedRGB, GreenRGB, BlueRGB);
                     }
                     else
                     {
@@ -309,7 +309,7 @@ namespace AlsekRGB.Client
                     {
                         ApplyColorSecondary = true;
                         var PlayerVehicle = GetPlayersLastVehicle();
-                        SetVehicleCustomSecondaryColour(PlayerVehicle, RedRGB, BlueRGB, GreenRGB);
+                        SetVehicleCustomSecondaryColour(PlayerVehicle, RedRGB, GreenRGB, BlueRGB);
                     }
                     else
                     {
@@ -319,8 +319,8 @@ namespace AlsekRGB.Client
             };
         }
 
-        #region RedInput
-        public static async void RedInput()
+        #region PaintInput
+        public static async void PaintInput(int Type)
         {
             string result = await Functions.GetUserInput(windowTitle: "Enter a number between 0 and 255", maxInputLength: 3);
 
@@ -332,153 +332,90 @@ namespace AlsekRGB.Client
                 #region Debug
                 if (MainMenu.DebugMode == true)
                 {
-                    Debug.Write($"Result:{resultint}/RedRGB:{PaintMenu.RedRGB}");
+                    if (Type == 1)
+                    {
+                        Debug.Write($"Result:{resultint}/RedRGB:{PaintMenu.RedRGB}");
+                    }
+                    if (Type == 2)
+                    {
+                        Debug.Write($"Result:{resultint}/Green:{PaintMenu.GreenRGB}");
+                    }
+                    if (Type == 3)
+                    {
+                        Debug.Write($"Result:{resultint}/BlueRGB:{PaintMenu.BlueRGB}");
+                    }
                 }
                 #endregion
                 
                 if (resultint < 0)
                 {
-                    Screen.ShowNotification($"AlsekRGB: Min value allowed for ~b~Red~w~ is 0");
+                    if (Type == 1)
+                    {
+                        Screen.ShowNotification($"AlsekRGB: Min value allowed for ~b~Red~w~ is 0");
+                    }
+                    if (Type == 2)
+                    {
+                        Screen.ShowNotification($"AlsekRGB: Min value allowed for ~b~Green~w~ is 0");
+                    }
+                    if (Type == 3)
+                    {
+                        Screen.ShowNotification($"AlsekRGB: Min value allowed for ~b~Blue~w~ is 0");
+                    }
                 }
                 if (resultint > 255)
                 {
-                    Screen.ShowNotification($"AlsekRGB: Max value allowed for ~b~Red~w~ is 255");
+                    if (Type == 1)
+                    {
+                        Screen.ShowNotification($"AlsekRGB: Max value allowed for ~b~Red~w~ is 255");
+                    }
+                    if (Type == 2)
+                    {
+                        Screen.ShowNotification($"AlsekRGB: Max value allowed for ~b~Green~w~ is 255");
+                    }
+                    if (Type == 3)
+                    {
+                        Screen.ShowNotification($"AlsekRGB: Max value allowed for ~b~Blue~w~ is 255");
+                    }
                 }
                 else
                 {
-                    PaintMenu.RedRGB = resultint;
-                    
+                    if (Type == 1)
+                    {
+                        PaintMenu.RedRGB = resultint;
+                    }
+                    if (Type == 2)
+                    {
+                        PaintMenu.GreenRGB = resultint;
+                    }
+                    if (Type == 3)
+                    {
+                        PaintMenu.BlueRGB = resultint;
+                    }
+
                     if (ApplyColorPrimary == true)
                     {
                         var PlayerVehicle = GetPlayersLastVehicle();
-                        SetVehicleCustomPrimaryColour(PlayerVehicle, RedRGB, BlueRGB, GreenRGB);
+                        SetVehicleCustomPrimaryColour(PlayerVehicle, RedRGB, GreenRGB, BlueRGB);
                     }
                     if (ApplyColorSecondary == true)
                     {
                         var PlayerVehicle = GetPlayersLastVehicle();
-                        SetVehicleCustomSecondaryColour(PlayerVehicle, RedRGB, BlueRGB, GreenRGB);
+                        SetVehicleCustomSecondaryColour(PlayerVehicle, RedRGB, GreenRGB, BlueRGB);
                     }
                     if (MainMenu.DebugMode == true)
                     {
-                        Debug.Write($"{RedRGB}");
-                    }
-                    else
-                    {
-                        return;
-                    }  
-                }
-            }
-            else
-            {
-                if (MainMenu.DebugMode == true)
-                {
-                    Screen.ShowNotification("Error: Field was empty (or other error)");
-                }
-            }    
-        }
-        #endregion
-        
-        #region GreenInput
-        public static async void GreenInput()
-        {
-            string result = await Functions.GetUserInput(windowTitle: "Enter a number between 0 and 255", maxInputLength: 3);
-
-            if (!string.IsNullOrEmpty(result))
-            {
-                int resultint = 0;
-                Int32.TryParse(result, out resultint);
-
-                #region Debug
-                if (MainMenu.DebugMode == true)
-                {
-                    Debug.Write($"Result:{resultint}");
-                }
-                #endregion
-                
-                if (resultint < 0)
-                {
-                    Screen.ShowNotification($"AlsekRGB: Min value allowed for ~b~Green~w~ is 0");
-                }
-                if (resultint > 255)
-                {
-                    Screen.ShowNotification($"AlsekRGB: Max value allowed for ~b~Green~w~ is 255");
-                }
-                else
-                {
-                    PaintMenu.GreenRGB = resultint;
-                    
-                    if (ApplyColorPrimary == true)
-                    {
-                        var PlayerVehicle = GetPlayersLastVehicle();
-                        SetVehicleCustomPrimaryColour(PlayerVehicle, RedRGB, BlueRGB, GreenRGB);
-                    }
-                    if (ApplyColorSecondary == true)
-                    {
-                        var PlayerVehicle = GetPlayersLastVehicle();
-                        SetVehicleCustomSecondaryColour(PlayerVehicle, RedRGB, BlueRGB, GreenRGB);
-                    }
-                    if (MainMenu.DebugMode == true)
-                    {
-                        Debug.Write($"{GreenRGB}");
-                    }
-                    else
-                    {
-                        return;
-                    }  
-                }
-            }
-            else
-            {
-                if (MainMenu.DebugMode == true)
-                {
-                    Screen.ShowNotification("Error: Field was empty (or other error)");
-                }
-            }    
-        }
-        #endregion
-        
-        #region BlueInput
-        public static async void BlueInput()
-        {
-            string result = await Functions.GetUserInput(windowTitle: "Enter a number between 0 and 255", maxInputLength: 3);
-
-            if (!string.IsNullOrEmpty(result))
-            {
-                int resultint = 0;
-                Int32.TryParse(result, out resultint);
-
-                #region Debug
-                if (MainMenu.DebugMode == true)
-                {
-                    Debug.Write($"Result:{resultint}");
-                }
-                #endregion
-                
-                if (resultint < 0)
-                {
-                    Screen.ShowNotification($"AlsekRGB: Min value allowed for ~b~Blue~w~ is 0");
-                }
-                if (resultint > 255)
-                {
-                    Screen.ShowNotification($"AlsekRGB: Max value allowed for ~b~Blue~w~ is 255");
-                }
-                else
-                {
-                    PaintMenu.BlueRGB = resultint;
-                    
-                    if (ApplyColorPrimary == true)
-                    {
-                        var PlayerVehicle = GetPlayersLastVehicle();
-                        SetVehicleCustomPrimaryColour(PlayerVehicle, RedRGB, BlueRGB, GreenRGB);
-                    }
-                    if (ApplyColorSecondary == true)
-                    {
-                        var PlayerVehicle = GetPlayersLastVehicle();
-                        SetVehicleCustomSecondaryColour(PlayerVehicle, RedRGB, BlueRGB, GreenRGB);
-                    }
-                    if (MainMenu.DebugMode == true)
-                    {
-                        Debug.Write($"{BlueRGB}");
+                        if (Type == 1)
+                        {
+                            Debug.Write($"{RedRGB}");
+                        }
+                        if (Type == 2)
+                        {
+                            Debug.Write($"{GreenRGB}");
+                        }
+                        if (Type == 3)
+                        {
+                            Debug.Write($"{BlueRGB}");
+                        }
                     }
                     else
                     {

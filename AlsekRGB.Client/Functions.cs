@@ -9,6 +9,12 @@ namespace AlsekRGB.Client
 {
     public static class Functions
     {
+        /*
+        ########################################################
+                Full Credit to vespura for all of this code
+        ########################################################
+        */
+        
         #region some misc functions copied from base script
         /// <summary>
         /// Copy of <see cref="BaseScript.TriggerServerEvent(string, object[])"/>
