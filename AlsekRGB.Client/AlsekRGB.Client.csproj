@@ -49,11 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandMenu.cs" />
-    <Compile Include="Commands.cs" />
     <Compile Include="Functions.cs" />
     <Compile Include="MainMenu.cs" />
-    <Compile Include="MiscMenu.cs" />
+    <Compile Include="Misc\CommandMenu.cs" />
+    <Compile Include="Misc\Commands.cs" />
+    <Compile Include="Misc\MiscMenu.cs" />
     <Compile Include="Neons\NeonColor.cs" />
     <Compile Include="Neons\NeonMenu.cs" />
     <Compile Include="PaintMenu.cs" />

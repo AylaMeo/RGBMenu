@@ -5,34 +5,47 @@ namespace AlsekRGB.Client
 {
     public class MiscMenu
     {
-        private Menu menu;
+        private Menu Misc;
+        
+        public static CommandMenu Commands { get; private set; }
 
         private void CreateMenu()
         {
-            menu = new Menu("Miscellaneous", "Miscellaneous stuff");
+            Misc = new Menu("Miscellaneous", "Miscellaneous stuff");
+             
+            //Adding the commands sub menu
+            {
+                Commands = new CommandMenu();
+                Menu CommandMenu = Commands.GetMenu();
+                MenuItem CommandButton = new MenuItem("Command Docs", "List of commands")
+                {
+                    Label = "→→→"
+                };
+                Misc.AddMenuItem(CommandButton);
+                MenuController.BindMenuItem(Misc, CommandMenu, CommandButton);
+            }
             
-            
-            // Credits
-            menu.AddMenuItem(new MenuItem("Made using MenuAPI by Vespura", "Full credit to him otherwise this wouldn't be possible! <3"));
-            
-            MenuCheckboxItem Align = new MenuCheckboxItem("Right Align Menu", "This will change the menu to appear on the left", !menu.LeftAligned)
+            MenuCheckboxItem Align = new MenuCheckboxItem("Right Align Menu", "This will change the menu to appear on the left", !Misc.LeftAligned)
             {
                 Style = MenuCheckboxItem.CheckboxStyle.Tick
             };
-            menu.AddMenuItem(Align);
+            Misc.AddMenuItem(Align);
             
             MenuCheckboxItem DebugMode = new MenuCheckboxItem("Debug Mode", "This will enable debug mode", MainMenu.DebugMode)
             {
                 Style = MenuCheckboxItem.CheckboxStyle.Tick
             };
-            menu.AddMenuItem(DebugMode);
+            Misc.AddMenuItem(DebugMode);
             
+            // Credits
+            Misc.AddMenuItem(new MenuItem("Made using MenuAPI by Vespura", "Full credit to him otherwise this wouldn't be possible! <3"));
+                  
             /*
             ########################################################
                                 Event handlers
             ########################################################
             */
-            menu.OnCheckboxChange += (_menu, _item, _index, _checked) =>
+            Misc.OnCheckboxChange += (_menu, _item, _index, _checked) =>
             {
                 // Code in here gets executed whenever a checkbox is toggled.
                 if (MainMenu.DebugMode == true)
@@ -69,11 +82,11 @@ namespace AlsekRGB.Client
         
         public Menu GetMenu()
         {
-            if (menu == null)
+            if (Misc == null)
             {
                 CreateMenu();
             }
-            return menu;
+            return Misc;
         }
     }
 }
