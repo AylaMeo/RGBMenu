@@ -1,27 +1,29 @@
 # RGB Menu
 
-**About**
+### **About**
 
 A simple menu to change primary and secondary paint based on RGB.
 
 Also can modify neons and do cool neon tricks.
 
-**Screenshots**
+### **Screenshots**
 
-* [Screenshots are in the thread on the fivem forum.](https://forum.fivem.net/t/release-2-5-neons-rgb-paint-menu-neons/245876)
+|Main Menu|Paint|Neons|
+|:-:|:-:|:-:|
+|![Main Menu](https://user-images.githubusercontent.com/23016491/53139154-bb755800-3556-11e9-9585-1ec1b7abb19f.png)|![Paint](https://user-images.githubusercontent.com/23016491/53139138-ab5d7880-3556-11e9-9dbe-19225515edbc.png)|![Neons](https://user-images.githubusercontent.com/23016491/53139115-9aad0280-3556-11e9-890a-6c84bb421c7b.png)|
 
-**Downloads**
+### **Downloads**
 
 * [Download on Github](https://github.com/Alsekwolf/RGBMenu/releases)
 
-**Installation**
+### **Installation**
 Place in your resources folder, just like [any other NORMAL resource](https://forum.fivem.net/t/how-to-install-a-fivem-resource-script/81013).
 
-**How to use**
+### **How to use**
 Step 1: Open with F5
 Step 2: Use
 
-**Changelog**
+### **Changelog**
 _2.0_
 NEONS!!!
 Commands
@@ -38,5 +40,7 @@ _1.2_
 _1.1_ Cleaned up some stuff I forgot and updated MenuAPI, thanks @Vespura for the update with toggle for controller :heart: 
 
 
-**Credits**
+### **Credits**
 @Vespura - MenuAPI :blue_heart:
+
+![Gif Neons](https://user-images.githubusercontent.com/23016491/53139172-caf4a100-3556-11e9-8946-8c745c073759.gif)
