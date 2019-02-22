@@ -6,6 +6,8 @@ A simple menu to change primary and secondary paint based on RGB.
 
 Also can modify neons and do cool neon tricks.
 
+**If you have any ideas for neon modes, please suggest them**
+
 ### **Screenshots**
 
 |Main Menu|Paint|Neons|
