@@ -52,7 +52,6 @@
   <ItemGroup>
     <Compile Include="Functions.cs" />
     <Compile Include="MainMenu.cs" />
-    <Compile Include="Misc\CommandMenu.cs" />
     <Compile Include="Misc\Commands.cs" />
     <Compile Include="Misc\MiscMenu.cs" />
     <Compile Include="Neons\NeonColor.cs" />
