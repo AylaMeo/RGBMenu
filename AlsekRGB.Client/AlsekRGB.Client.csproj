@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AlsekRGB.Client</RootNamespace>
-    <AssemblyName>AlsekRGB.Client.net</AssemblyName>
+    <AssemblyName>AlsekRGB.net</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -32,15 +32,16 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CitizenFX.Core">
-      <HintPath>..\dependencies\client\CitizenFX.Core.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="CitizenFX.Core.Client, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\CitizenFX.Core.Client.1.0.1117\lib\net45\CitizenFX.Core.Client.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="MenuAPI.net">
-      <HintPath>..\dependencies\client\MenuAPI.net.dll</HintPath>
+    <Reference Include="MenuAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\dependencies\MenuAPI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,7 +52,6 @@
   <ItemGroup>
     <Compile Include="Functions.cs" />
     <Compile Include="MainMenu.cs" />
-    <Compile Include="Misc\CommandMenu.cs" />
     <Compile Include="Misc\Commands.cs" />
     <Compile Include="Misc\MiscMenu.cs" />
     <Compile Include="Neons\NeonColor.cs" />
@@ -63,6 +63,9 @@
     <Content Include="__resource.lua">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
