@@ -1,5 +1,6 @@
 using CitizenFX.Core;
 using MenuAPI;
+using static CitizenFX.Core.Native.API;
 
 namespace AlsekRGB.Client
 {
@@ -13,10 +14,19 @@ namespace AlsekRGB.Client
         public static NeonMenu Neon { get; private set; }
         public static PaintMenu Paint { get; private set; }
         public static MiscMenu Misc { get; private set; }
-        public static bool DebugMode = false;
+        public static bool DebugMode { get; private set; }
 
         public MainMenu()
         {
+            if (GetResourceMetadata(GetCurrentResourceName(), "client_debug_mode", 0).ToLower() == "true")
+            {
+                DebugMode = true;
+            }
+            else
+            {
+                DebugMode = false;
+            }
+
             Tick += NeonMenu.ProcessTask;
             
             MenuController.MenuToggleKey = Control.SelectCharacterMichael;

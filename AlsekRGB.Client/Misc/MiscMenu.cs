@@ -30,13 +30,13 @@ namespace AlsekRGB.Client
                 Style = MenuCheckboxItem.CheckboxStyle.Tick
             };
             Misc.AddMenuItem(Align);
-            
+            /*
             MenuCheckboxItem DebugMode = new MenuCheckboxItem("Debug Mode", "This will enable debug mode", MainMenu.DebugMode)
             {
                 Style = MenuCheckboxItem.CheckboxStyle.Tick
             };
             Misc.AddMenuItem(DebugMode);
-            
+            */
             // Credits
             Misc.AddMenuItem(new MenuItem("Made using MenuAPI by Vespura", "Full credit to him otherwise this wouldn't be possible! <3"));
                   
@@ -65,7 +65,8 @@ namespace AlsekRGB.Client
                         MenuController.MenuAlignment = MenuController.MenuAlignmentOption.Left;
                     }
                 }
-                                
+                
+                /*
                 if (_item == DebugMode)
                 {
                     if (_checked)
@@ -76,7 +77,7 @@ namespace AlsekRGB.Client
                     {
                         MainMenu.DebugMode = false;
                     }
-                }
+                }*/
             };
         }
         
