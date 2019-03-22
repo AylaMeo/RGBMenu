@@ -12,11 +12,13 @@ namespace AlsekRGB.Client
         private Menu Neons;
         
         public static NeonChanger NeonColor { get; private set; }
+        public static NeonCustom NeonCustomMode { get; private set; }
         
         public static int PlayerVehicle;
         
         public static bool NeonsRainbowVar1 { get; private set; } = false;
         public static bool NeonsRainbowVar2 { get; private set; } = false;
+        
         public static int AwaitDelayVar = 300;
         
         
@@ -36,9 +38,20 @@ namespace AlsekRGB.Client
         public static int GreenNeon4 = 255;
         public static int BlueNeon4 = 0;
 
+        #region NeonCustomMode
+
+        public static bool NeonsRainbowCustomVar = false;
+        public static int FirstNeonVar = 0;
+        public static int SecondNeonVar = 0;
+        public static int ThirdNeonVar = 0;
+        public static int FourthNeonVar = 0;
+
+        #endregion
+        
         private void CreateMenu()
         {
             Neons = new Menu("Neons", "Neons are hot");
+            
             
             MenuCheckboxItem NeonsRainbow = new MenuCheckboxItem("Neon Rainbow Circle", "Makes the neons rainbow and circle the vehicle you are in", NeonsRainbowVar1)
             {
@@ -87,19 +100,34 @@ namespace AlsekRGB.Client
             {
                 NeonColor = new NeonChanger();
                 Menu NeonChanger = NeonColor.GetMenu();
-                MenuItem PaintButton = new MenuItem("Neon Color Picker", "Neon fine tuning !!THESE DO NOT TAKE EFFECT UNLESS YOU CYCLE ONE OF THE NEON MODES!!")
+                MenuItem NeonButton = new MenuItem("Neon Color Picker", "Neon fine tuning !!THESE DO NOT TAKE EFFECT UNLESS YOU CYCLE ONE OF THE NEON MODES!!")
                 {
                     Label = "→→→"
                 };
-                Neons.AddMenuItem(PaintButton);
-                MenuController.BindMenuItem(Neons, NeonChanger, PaintButton);
+                Neons.AddMenuItem(NeonButton);
+                MenuController.BindMenuItem(Neons, NeonChanger, NeonButton);
             }
+            
+            //Adding the neon custom sub menu
+            {
+                NeonCustomMode = new NeonCustom();
+                Menu NeonCustom = NeonCustomMode.GetMenu();
+                MenuItem NeonCustomButton = new MenuItem("Custom Neon Mode", "A custom neon mode you can setup")
+                {
+                    Label = "→→→"
+                };
+                Neons.AddMenuItem(NeonCustomButton);
+                MenuController.BindMenuItem(Neons, NeonCustom, NeonCustomButton);
+            }
+
             
             /*
             ########################################################
                                 Event handlers
             ########################################################
             */
+            
+            
             Neons.OnDynamicListItemSelect += (_menu, _dynamicListItem, _currentItem) =>
             {
                 // Code in here would get executed whenever a dynamic list item is pressed.
@@ -226,6 +254,44 @@ namespace AlsekRGB.Client
         public static async Task ProcessTask()
         {
             await Delay(0);
+            if (NeonsRainbowCustomVar == true)
+            {
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonMenu.RedNeon1, NeonMenu.GreenNeon1, NeonMenu.BlueNeon1);
+                if (FirstNeonVar != 4)
+                {
+                    SetVehicleNeonLightEnabled(PlayerVehicle, FirstNeonVar, true);
+                    await Delay(AwaitDelayVar);
+                    SetVehicleNeonLightEnabled(PlayerVehicle, FirstNeonVar, false);
+                }
+
+                if (SecondNeonVar != 4)
+                {
+                    await Delay(AwaitDelayVar);
+                    SetVehicleNeonLightsColour(PlayerVehicle, NeonMenu.RedNeon2, NeonMenu.GreenNeon2, NeonMenu.BlueNeon2);
+                    SetVehicleNeonLightEnabled(PlayerVehicle, SecondNeonVar, true);
+                    await Delay(AwaitDelayVar);
+                    SetVehicleNeonLightEnabled(PlayerVehicle, SecondNeonVar, false);
+                }
+
+                if (ThirdNeonVar != 4)
+                {
+                    await Delay(AwaitDelayVar);
+                    SetVehicleNeonLightsColour(PlayerVehicle, NeonMenu.RedNeon3, NeonMenu.GreenNeon3, NeonMenu.BlueNeon3);
+                    SetVehicleNeonLightEnabled(PlayerVehicle, ThirdNeonVar, true);
+                    await Delay(AwaitDelayVar);
+                    SetVehicleNeonLightEnabled(PlayerVehicle, ThirdNeonVar, false);
+                }
+
+                if (FourthNeonVar != 4)
+                {
+                    await Delay(AwaitDelayVar);
+                    SetVehicleNeonLightsColour(PlayerVehicle, NeonMenu.RedNeon4, NeonMenu.GreenNeon4, NeonMenu.BlueNeon4);
+                    SetVehicleNeonLightEnabled(PlayerVehicle, FourthNeonVar, true);
+                    await Delay(AwaitDelayVar);
+                    SetVehicleNeonLightEnabled(PlayerVehicle, FourthNeonVar, false);
+                }
+            }
+            
             if (NeonsRainbowVar1 == true)
             {
                 SetVehicleNeonLightsColour(PlayerVehicle, NeonMenu.RedNeon1, NeonMenu.GreenNeon1, NeonMenu.BlueNeon1);

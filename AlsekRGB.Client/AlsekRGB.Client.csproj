@@ -55,6 +55,7 @@
     <Compile Include="Misc\Commands.cs" />
     <Compile Include="Misc\MiscMenu.cs" />
     <Compile Include="Neons\NeonColor.cs" />
+    <Compile Include="Neons\NeonCustom.cs" />
     <Compile Include="Neons\NeonMenu.cs" />
     <Compile Include="PaintMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
