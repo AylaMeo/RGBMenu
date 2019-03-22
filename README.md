@@ -6,6 +6,8 @@ A simple menu to change primary and secondary paint based on RGB.
 
 Also can modify neons and do cool neon tricks.
 
+**If you have any ideas for neon modes, please suggest them**
+
 ### **Screenshots**
 
 |Main Menu|Paint|Neons|
@@ -24,6 +26,31 @@ Step 1: Open with F5
 Step 2: Use
 
 ### **Changelog**
+_2.8_
+
+* Added a custom neon mode
+
+<details>
+  <summary>Old Updates</summary>  
+_2.7_
+
+* Updated dependencies, changed to using NuGet for CFX, Changed how debug mode works (also removing the menu items) If you want to enable debug mode now (you probably shouldn't) you just edit the resource.lua.
+
+* Removed the command menu as it's not been needed for awhile (kept commands).
+
+* Probably forgot to note something like always!
+
+_2.6_
+
+* Select event for all lists, you can now just press on any number list to bring up a box to type in what you want
+
+* Fixed blue being green and green being blue
+
+_2.5_
+NEONS!!!
+Commands
+Some Docs
+
 _2.0_
 NEONS!!!
 Commands
@@ -38,7 +65,8 @@ _1.2_
 +submenu for credits & settings
 
 _1.1_ Cleaned up some stuff I forgot and updated MenuAPI, thanks @Vespura for the update with toggle for controller :heart: 
-
+  
+</details>
 
 ### **Credits**
 @Vespura - MenuAPI :blue_heart:
