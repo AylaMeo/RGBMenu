@@ -63,13 +63,13 @@ namespace AlsekRGB.Client
             
             //List for Third neon
             var ThirdNeonList = new List<string> { "Left", "Right", "Front", "Back"};
-            MenuListItem ThirdNeon = new MenuListItem("Second Neon", ThirdNeonList, 0, "Set the second neon in sequence.");
+            MenuListItem ThirdNeon = new MenuListItem("Third Neon", ThirdNeonList, 0, "Set the third neon in sequence.");
             Neons.AddMenuItem(ThirdNeon);
             //List for Third neon
             
             //List for Fourth neon
             var FourthNeonList = new List<string> { "Left", "Right", "Front", "Back"};
-            MenuListItem FourthNeon = new MenuListItem("Second Neon", FourthNeonList, 0, "Set the second neon in sequence.");
+            MenuListItem FourthNeon = new MenuListItem("Fourth Neon", FourthNeonList, 0, "Set the fourth neon in sequence.");
             Neons.AddMenuItem(FourthNeon);
             //List for Fourth neon
             
@@ -210,23 +210,23 @@ namespace AlsekRGB.Client
                     //Screen.ShowNotification($"{value}");
                     if (value == Left)
                     {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, FirstNeonVar, false);
-                        FirstNeonVar = 0;
+                        SetVehicleNeonLightEnabled(PlayerVehicle, ThirdNeonVar, false);
+                        ThirdNeonVar = 0;
                     }
                     if (value == Right)
                     {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, FirstNeonVar, false);
-                        FirstNeonVar = 1;
+                        SetVehicleNeonLightEnabled(PlayerVehicle, ThirdNeonVar, false);
+                        ThirdNeonVar = 1;
                     }
                     if (value == Front)
                     {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, FirstNeonVar, false);
-                        FirstNeonVar = 2;
+                        SetVehicleNeonLightEnabled(PlayerVehicle, ThirdNeonVar, false);
+                        ThirdNeonVar = 2;
                     }
                     if (value == Back)
                     {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, FirstNeonVar, false);
-                        FirstNeonVar = 3;
+                        SetVehicleNeonLightEnabled(PlayerVehicle, ThirdNeonVar, false);
+                        ThirdNeonVar = 3;
                     }
                 }
                 
