@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using MenuAPI;
 using static CitizenFX.Core.Native.API;
@@ -13,6 +12,7 @@ namespace AlsekRGB.Client
         private Menu Neons;
         
         public static NeonChanger NeonColor { get; private set; }
+        public static NeonCustom NeonCustomMode { get; private set; }
         
         public static int PlayerVehicle;
         
@@ -37,41 +37,21 @@ namespace AlsekRGB.Client
         public static int RedNeon4 = 255;
         public static int GreenNeon4 = 255;
         public static int BlueNeon4 = 0;
-        
-        
-        public static bool NeonsRainbowCustomVar { get; private set; } = false;
-        public static int FirstNeonVar { get; private set; } = 0;
-        public static int SecondNeonVar { get; private set; } = 0;
-        public static int ThirdNeonVar { get; private set; } = 0;
-        public static int FourthNeonVar { get; private set; } = 0;
 
+        #region NeonCustomMode
+
+        public static bool NeonsRainbowCustomVar = false;
+        public static int FirstNeonVar = 0;
+        public static int SecondNeonVar = 0;
+        public static int ThirdNeonVar = 0;
+        public static int FourthNeonVar = 0;
+
+        #endregion
+        
         private void CreateMenu()
         {
             Neons = new Menu("Neons", "Neons are hot");
             
-            //List for first neon
-            var FirstNeonList = new List<string> { "Left", "Right", "Front", "Back", "None"};
-            MenuListItem FirstNeon = new MenuListItem("First Neon", FirstNeonList, 0, "Set the first neon in sequence.");
-            Neons.AddMenuItem(FirstNeon);
-            //List for first neon
-            
-            //List for Second neon
-            var SecondNeonList = new List<string> { "Left", "Right", "Front", "Back", "None"};
-            MenuListItem SecondNeon = new MenuListItem("Second Neon", SecondNeonList, 0, "Set the second neon in sequence.");
-            Neons.AddMenuItem(SecondNeon);
-            //List for Second neon
-            
-            //List for Third neon
-            var ThirdNeonList = new List<string> { "Left", "Right", "Front", "Back", "None"};
-            MenuListItem ThirdNeon = new MenuListItem("Third Neon", ThirdNeonList, 0, "Set the third neon in sequence.");
-            Neons.AddMenuItem(ThirdNeon);
-            //List for Third neon
-            
-            //List for Fourth neon
-            var FourthNeonList = new List<string> { "Left", "Right", "Front", "Back", "None"};
-            MenuListItem FourthNeon = new MenuListItem("Fourth Neon", FourthNeonList, 0, "Set the fourth neon in sequence.");
-            Neons.AddMenuItem(FourthNeon);
-            //List for Fourth neon
             
             MenuCheckboxItem NeonsRainbow = new MenuCheckboxItem("Neon Rainbow Circle", "Makes the neons rainbow and circle the vehicle you are in", NeonsRainbowVar1)
             {
@@ -84,12 +64,6 @@ namespace AlsekRGB.Client
                 Style = MenuCheckboxItem.CheckboxStyle.Tick
             };
             Neons.AddMenuItem(NeonsRainbow2);
-            
-            MenuCheckboxItem NeonsRainbowCustom = new MenuCheckboxItem("Neon Rainbow Custom", "Makes the neons use the custom mode you design", NeonsRainbowCustomVar)
-            {
-                Style = MenuCheckboxItem.CheckboxStyle.Tick
-            };
-            Neons.AddMenuItem(NeonsRainbowCustom);
             
             // AwaitDelay Dynamic List
             string AwaitDelayDyn(MenuDynamicListItem item, bool left)
@@ -126,169 +100,33 @@ namespace AlsekRGB.Client
             {
                 NeonColor = new NeonChanger();
                 Menu NeonChanger = NeonColor.GetMenu();
-                MenuItem PaintButton = new MenuItem("Neon Color Picker", "Neon fine tuning !!THESE DO NOT TAKE EFFECT UNLESS YOU CYCLE ONE OF THE NEON MODES!!")
+                MenuItem NeonButton = new MenuItem("Neon Color Picker", "Neon fine tuning !!THESE DO NOT TAKE EFFECT UNLESS YOU CYCLE ONE OF THE NEON MODES!!")
                 {
                     Label = "→→→"
                 };
-                Neons.AddMenuItem(PaintButton);
-                MenuController.BindMenuItem(Neons, NeonChanger, PaintButton);
+                Neons.AddMenuItem(NeonButton);
+                MenuController.BindMenuItem(Neons, NeonChanger, NeonButton);
             }
+            
+            //Adding the neon custom sub menu
+            {
+                NeonCustomMode = new NeonCustom();
+                Menu NeonCustom = NeonCustomMode.GetMenu();
+                MenuItem NeonCustomButton = new MenuItem("Custom Neon Mode", "A custom neon mode you can setup")
+                {
+                    Label = "→→→"
+                };
+                Neons.AddMenuItem(NeonCustomButton);
+                MenuController.BindMenuItem(Neons, NeonCustom, NeonCustomButton);
+            }
+
             
             /*
             ########################################################
                                 Event handlers
             ########################################################
             */
-            Neons.OnListIndexChange += (_menu, _listItem, _oldIndex, _newIndex, _itemIndex) =>
-            {
-                // Code in here would get executed whenever a dynamic list item is pressed.
-                if (MainMenu.DebugMode == true)
-                {
-                    Debug.WriteLine($"OnListIndexChange: [{_menu}, {_listItem}, {_oldIndex}, {_newIndex}, {_itemIndex}]");
-                }
-
-                var None = "None";
-                var Left = "Left";
-                var Right = "Right";
-                var Back = "Back";
-                var Front = "Front";
-                
-                if (_listItem == FirstNeon)
-                {
-                    var value = FirstNeonList[_newIndex];
-                    //Screen.ShowNotification($"{value}");
-                    if (value == None)
-                    {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, FirstNeonVar, false);
-                        FirstNeonVar = 4;
-                    }
-                    if (value == Left)
-                    {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, FirstNeonVar, false);
-                        FirstNeonVar = 0;
-                    }
-                    if (value == Right)
-                    {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, FirstNeonVar, false);
-                        FirstNeonVar = 1;
-                    }
-                    if (value == Front)
-                    {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, FirstNeonVar, false);
-                        FirstNeonVar = 2;
-                    }
-                    if (value == Back)
-                    {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, FirstNeonVar, false);
-                        FirstNeonVar = 3;
-                    }
-                }
-                
-                if (_listItem == SecondNeon)
-                {
-                    var value = SecondNeonList[_newIndex];
-                    //Screen.ShowNotification($"{value}");
-                    if (value == None)
-                    {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, SecondNeonVar, false);
-                        SecondNeonVar = 4;
-                    }
-                    if (value == Left)
-                    {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, SecondNeonVar, false);
-                        SecondNeonVar = 0;
-                    }
-                    if (value == Right)
-                    {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, SecondNeonVar, false);
-                        SecondNeonVar = 1;
-                    }
-                    if (value == Front)
-                    {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, SecondNeonVar, false);
-                        SecondNeonVar = 2;
-                    }
-                    if (value == Back)
-                    {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, SecondNeonVar, false);
-                        SecondNeonVar = 3;
-                    }
-                    else
-                    {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, SecondNeonVar, false);
-                    }
-                }
-                
-                if (_listItem == ThirdNeon)
-                {
-                    var value = FirstNeonList[_newIndex];
-                    //Screen.ShowNotification($"{value}");
-                    if (value == None)
-                    {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, ThirdNeonVar, false);
-                        ThirdNeonVar = 4;
-                    }
-                    if (value == Left)
-                    {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, ThirdNeonVar, false);
-                        ThirdNeonVar = 0;
-                    }
-                    if (value == Right)
-                    {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, ThirdNeonVar, false);
-                        ThirdNeonVar = 1;
-                    }
-                    if (value == Front)
-                    {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, ThirdNeonVar, false);
-                        ThirdNeonVar = 2;
-                    }
-                    if (value == Back)
-                    {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, ThirdNeonVar, false);
-                        ThirdNeonVar = 3;
-                    }
-                    else
-                    {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, ThirdNeonVar, false);
-                    }
-                }
-                
-                if (_listItem == FourthNeon)
-                {
-                    var value = FourthNeonList[_newIndex];
-                    //Screen.ShowNotification($"{value}");
-                    if (value == None)
-                    {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, FourthNeonVar, false);
-                        FourthNeonVar = 4;
-                    }
-                    if (value == Left)
-                    {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, FourthNeonVar, false);
-                        FourthNeonVar = 0;
-                    }
-                    if (value == Right)
-                    {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, FourthNeonVar, false);
-                        FourthNeonVar = 1;
-                    }
-                    if (value == Front)
-                    {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, FourthNeonVar, false);
-                        FourthNeonVar = 2;
-                    }
-                    if (value == Back)
-                    {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, FourthNeonVar, false);
-                        FourthNeonVar = 3;
-                    }
-                    else
-                    {
-                        SetVehicleNeonLightEnabled(PlayerVehicle, FourthNeonVar, false);
-                    }
-                }
-            };
+            
             
             Neons.OnDynamicListItemSelect += (_menu, _dynamicListItem, _currentItem) =>
             {
@@ -335,19 +173,6 @@ namespace AlsekRGB.Client
                     else
                     {
                         NeonsRainbowVar2 = false;
-                    }
-                }
-                
-                if (_item == NeonsRainbowCustom)
-                {
-                    if (_checked)
-                    {
-                        PlayerVehicle = GetVehiclePedIsUsing(PlayerPedId());
-                        NeonsRainbowCustomVar = true;
-                    }
-                    else
-                    {
-                        NeonsRainbowCustomVar = false;
                     }
                 }
             };
