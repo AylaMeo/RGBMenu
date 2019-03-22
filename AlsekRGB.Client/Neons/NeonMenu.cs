@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using MenuAPI;
 using static CitizenFX.Core.Native.API;
@@ -17,6 +18,7 @@ namespace AlsekRGB.Client
         
         public static bool NeonsRainbowVar1 { get; private set; } = false;
         public static bool NeonsRainbowVar2 { get; private set; } = false;
+        
         public static int AwaitDelayVar = 300;
         
         
@@ -35,10 +37,41 @@ namespace AlsekRGB.Client
         public static int RedNeon4 = 255;
         public static int GreenNeon4 = 255;
         public static int BlueNeon4 = 0;
+        
+        
+        public static bool NeonsRainbowCustomVar { get; private set; } = false;
+        public static int FirstNeonVar { get; private set; } = 0;
+        public static int SecondNeonVar { get; private set; } = 0;
+        public static int ThirdNeonVar { get; private set; } = 0;
+        public static int FourthNeonVar { get; private set; } = 0;
 
         private void CreateMenu()
         {
             Neons = new Menu("Neons", "Neons are hot");
+            
+            //List for first neon
+            var FirstNeonList = new List<string> { "Left", "Right", "Front", "Back"};
+            MenuListItem FirstNeon = new MenuListItem("First Neon", FirstNeonList, 0, "Set the first neon in sequence.");
+            Neons.AddMenuItem(FirstNeon);
+            //List for first neon
+            
+            //List for Second neon
+            var SecondNeonList = new List<string> { "Left", "Right", "Front", "Back"};
+            MenuListItem SecondNeon = new MenuListItem("Second Neon", SecondNeonList, 0, "Set the second neon in sequence.");
+            Neons.AddMenuItem(SecondNeon);
+            //List for Second neon
+            
+            //List for Third neon
+            var ThirdNeonList = new List<string> { "Left", "Right", "Front", "Back"};
+            MenuListItem ThirdNeon = new MenuListItem("Second Neon", ThirdNeonList, 0, "Set the second neon in sequence.");
+            Neons.AddMenuItem(ThirdNeon);
+            //List for Third neon
+            
+            //List for Fourth neon
+            var FourthNeonList = new List<string> { "Left", "Right", "Front", "Back"};
+            MenuListItem FourthNeon = new MenuListItem("Second Neon", FourthNeonList, 0, "Set the second neon in sequence.");
+            Neons.AddMenuItem(FourthNeon);
+            //List for Fourth neon
             
             MenuCheckboxItem NeonsRainbow = new MenuCheckboxItem("Neon Rainbow Circle", "Makes the neons rainbow and circle the vehicle you are in", NeonsRainbowVar1)
             {
@@ -51,6 +84,12 @@ namespace AlsekRGB.Client
                 Style = MenuCheckboxItem.CheckboxStyle.Tick
             };
             Neons.AddMenuItem(NeonsRainbow2);
+            
+            MenuCheckboxItem NeonsRainbowCustom = new MenuCheckboxItem("Neon Rainbow Custom", "Makes the neons use the custom mode you design", NeonsRainbowCustomVar)
+            {
+                Style = MenuCheckboxItem.CheckboxStyle.Tick
+            };
+            Neons.AddMenuItem(NeonsRainbowCustom);
             
             // AwaitDelay Dynamic List
             string AwaitDelayDyn(MenuDynamicListItem item, bool left)
@@ -100,6 +139,124 @@ namespace AlsekRGB.Client
                                 Event handlers
             ########################################################
             */
+            Neons.OnListIndexChange += (_menu, _listItem, _oldIndex, _newIndex, _itemIndex) =>
+            {
+                // Code in here would get executed whenever a dynamic list item is pressed.
+                if (MainMenu.DebugMode == true)
+                {
+                    Debug.WriteLine($"OnListIndexChange: [{_menu}, {_listItem}, {_oldIndex}, {_newIndex}, {_itemIndex}]");
+                }
+                
+                var Left = "Left";
+                var Right = "Right";
+                var Back = "Back";
+                var Front = "Front";
+                
+                if (_listItem == FirstNeon)
+                {
+                    var value = FirstNeonList[_newIndex];
+                    //Screen.ShowNotification($"{value}");
+                    if (value == Left)
+                    {
+                        SetVehicleNeonLightEnabled(PlayerVehicle, FirstNeonVar, false);
+                        FirstNeonVar = 0;
+                    }
+                    if (value == Right)
+                    {
+                        SetVehicleNeonLightEnabled(PlayerVehicle, FirstNeonVar, false);
+                        FirstNeonVar = 1;
+                    }
+                    if (value == Front)
+                    {
+                        SetVehicleNeonLightEnabled(PlayerVehicle, FirstNeonVar, false);
+                        FirstNeonVar = 2;
+                    }
+                    if (value == Back)
+                    {
+                        SetVehicleNeonLightEnabled(PlayerVehicle, FirstNeonVar, false);
+                        FirstNeonVar = 3;
+                    }
+                }
+                
+                if (_listItem == SecondNeon)
+                {
+                    var value = SecondNeonList[_newIndex];
+                    //Screen.ShowNotification($"{value}");
+                    if (value == Left)
+                    {
+                        SetVehicleNeonLightEnabled(PlayerVehicle, SecondNeonVar, false);
+                        SecondNeonVar = 0;
+                    }
+                    if (value == Right)
+                    {
+                        SetVehicleNeonLightEnabled(PlayerVehicle, SecondNeonVar, false);
+                        SecondNeonVar = 1;
+                    }
+                    if (value == Front)
+                    {
+                        SetVehicleNeonLightEnabled(PlayerVehicle, SecondNeonVar, false);
+                        SecondNeonVar = 2;
+                    }
+                    if (value == Back)
+                    {
+                        SetVehicleNeonLightEnabled(PlayerVehicle, SecondNeonVar, false);
+                        SecondNeonVar = 3;
+                    }
+                }
+                
+                if (_listItem == ThirdNeon)
+                {
+                    var value = FirstNeonList[_newIndex];
+                    //Screen.ShowNotification($"{value}");
+                    if (value == Left)
+                    {
+                        SetVehicleNeonLightEnabled(PlayerVehicle, FirstNeonVar, false);
+                        FirstNeonVar = 0;
+                    }
+                    if (value == Right)
+                    {
+                        SetVehicleNeonLightEnabled(PlayerVehicle, FirstNeonVar, false);
+                        FirstNeonVar = 1;
+                    }
+                    if (value == Front)
+                    {
+                        SetVehicleNeonLightEnabled(PlayerVehicle, FirstNeonVar, false);
+                        FirstNeonVar = 2;
+                    }
+                    if (value == Back)
+                    {
+                        SetVehicleNeonLightEnabled(PlayerVehicle, FirstNeonVar, false);
+                        FirstNeonVar = 3;
+                    }
+                }
+                
+                if (_listItem == FourthNeon)
+                {
+                    var value = FourthNeonList[_newIndex];
+                    //Screen.ShowNotification($"{value}");
+                    if (value == Left)
+                    {
+                        SetVehicleNeonLightEnabled(PlayerVehicle, FourthNeonVar, false);
+                        FourthNeonVar = 0;
+                    }
+                    if (value == Right)
+                    {
+                        SetVehicleNeonLightEnabled(PlayerVehicle, FourthNeonVar, false);
+                        FourthNeonVar = 1;
+                    }
+                    if (value == Front)
+                    {
+                        SetVehicleNeonLightEnabled(PlayerVehicle, FourthNeonVar, false);
+                        FourthNeonVar = 2;
+                    }
+                    if (value == Back)
+                    {
+                        SetVehicleNeonLightEnabled(PlayerVehicle, FourthNeonVar, false);
+                        FourthNeonVar = 3;
+                    }
+                }
+            };
+            
             Neons.OnDynamicListItemSelect += (_menu, _dynamicListItem, _currentItem) =>
             {
                 // Code in here would get executed whenever a dynamic list item is pressed.
@@ -145,6 +302,19 @@ namespace AlsekRGB.Client
                     else
                     {
                         NeonsRainbowVar2 = false;
+                    }
+                }
+                
+                if (_item == NeonsRainbowCustom)
+                {
+                    if (_checked)
+                    {
+                        PlayerVehicle = GetVehiclePedIsUsing(PlayerPedId());
+                        NeonsRainbowCustomVar = true;
+                    }
+                    else
+                    {
+                        NeonsRainbowCustomVar = false;
                     }
                 }
             };
@@ -226,6 +396,29 @@ namespace AlsekRGB.Client
         public static async Task ProcessTask()
         {
             await Delay(0);
+            if (NeonsRainbowCustomVar == true)
+            {
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonMenu.RedNeon1, NeonMenu.GreenNeon1, NeonMenu.BlueNeon1);
+                SetVehicleNeonLightEnabled(PlayerVehicle, FirstNeonVar, true);
+                await Delay(AwaitDelayVar);
+                SetVehicleNeonLightEnabled(PlayerVehicle, FirstNeonVar, false);
+                await Delay(AwaitDelayVar);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonMenu.RedNeon2, NeonMenu.GreenNeon2, NeonMenu.BlueNeon2);
+                SetVehicleNeonLightEnabled(PlayerVehicle, SecondNeonVar, true);
+                await Delay(AwaitDelayVar);
+                SetVehicleNeonLightEnabled(PlayerVehicle, SecondNeonVar, false);
+                await Delay(AwaitDelayVar);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonMenu.RedNeon3, NeonMenu.GreenNeon3, NeonMenu.BlueNeon3);
+                SetVehicleNeonLightEnabled(PlayerVehicle, ThirdNeonVar, true);
+                await Delay(AwaitDelayVar);
+                SetVehicleNeonLightEnabled(PlayerVehicle, ThirdNeonVar, false);
+                await Delay(AwaitDelayVar);
+                SetVehicleNeonLightsColour(PlayerVehicle, NeonMenu.RedNeon4, NeonMenu.GreenNeon4, NeonMenu.BlueNeon4);
+                SetVehicleNeonLightEnabled(PlayerVehicle, FourthNeonVar, true);
+                await Delay(AwaitDelayVar);
+                SetVehicleNeonLightEnabled(PlayerVehicle, FourthNeonVar, false);
+            }
+            
             if (NeonsRainbowVar1 == true)
             {
                 SetVehicleNeonLightsColour(PlayerVehicle, NeonMenu.RedNeon1, NeonMenu.GreenNeon1, NeonMenu.BlueNeon1);
