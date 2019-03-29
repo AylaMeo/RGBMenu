@@ -23,21 +23,21 @@ namespace AlsekRGB.Client
         
         private void CreateMenu()
         {
-            Paint = new Menu("Paint", "Painters place");
+            Paint = new Menu($"{MainMenu.PaintMenuTitle}", $"{MainMenu.PaintMenuDesc}");
             
             /*
             ########################################################
                                  Paint
             */       
             //Box for applying primary paint
-            MenuCheckboxItem paintPrimary = new MenuCheckboxItem("Apply primary RGB", "This will make your paint apply as you change it", ApplyColorPrimary)
+            MenuCheckboxItem paintPrimary = new MenuCheckboxItem($"{MainMenu.PaintMenuPrimaryTitle}", $"{MainMenu.PaintMenuPrimaryDesc}", ApplyColorPrimary)
             {
                 Style = MenuCheckboxItem.CheckboxStyle.Tick
             };
             Paint.AddMenuItem(paintPrimary);
             //Box for applying primary paint
             //Box for applying secondary paint
-            MenuCheckboxItem paintSecondary = new MenuCheckboxItem("Apply secondary RGB", "This will make your paint apply as you change it", ApplyColorSecondary)
+            MenuCheckboxItem paintSecondary = new MenuCheckboxItem($"{MainMenu.PaintMenuSecondaryTitle}", $"{MainMenu.PaintMenuSecondaryDesc}", ApplyColorSecondary)
             {
                 Style = MenuCheckboxItem.CheckboxStyle.Tick
             };
@@ -83,7 +83,7 @@ namespace AlsekRGB.Client
                 }
                 return RedRGB.ToString();
             }
-            MenuDynamicListItem RedDynList = new MenuDynamicListItem("Red", "0", RedDyn, "Set the red in RGB.");
+            MenuDynamicListItem RedDynList = new MenuDynamicListItem($"{MainMenu.PaintMenuRedTitle}", "0", RedDyn, $"{MainMenu.PaintMenuRedDesc}");
             Paint.AddMenuItem(RedDynList);
             // Red Dynamic List
             
@@ -126,7 +126,7 @@ namespace AlsekRGB.Client
                 }
                 return GreenRGB.ToString();
             }
-            MenuDynamicListItem GreenDynList = new MenuDynamicListItem("Green", "0", GreenDyn, "Set the Green in RGB.");
+            MenuDynamicListItem GreenDynList = new MenuDynamicListItem($"{MainMenu.PaintMenuGreenTitle}", "0", GreenDyn, $"{MainMenu.PaintMenuGreenDesc}");
             Paint.AddMenuItem(GreenDynList);
             // Green Dynamic List
             
@@ -169,7 +169,7 @@ namespace AlsekRGB.Client
                 }
                 return BlueRGB.ToString();
             }
-            MenuDynamicListItem BlueDynList = new MenuDynamicListItem("Blue", "0", BlueDyn, "Set the Blue in RGB.");
+            MenuDynamicListItem BlueDynList = new MenuDynamicListItem($"{MainMenu.PaintMenuBlueTitle}", "0", BlueDyn, $"{MainMenu.PaintMenuBlueDesc}");
             Paint.AddMenuItem(BlueDynList);
             // Blue Dynamic List
             /*
