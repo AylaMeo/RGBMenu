@@ -1,0 +1,48 @@
+{
+  "Main": [
+    "RGBMenu",
+    "Paint Menu",
+    "RGB Painting menu for cars",
+    "Neon Menu",
+    "Neon customization for cars",
+    "Miscellaneous & Credits"
+  ],
+  "Paint": [
+    "Apply primary RGB",
+    "This will make your paint apply as you change it",
+    "Apply secondary RGB",
+    "Red",
+    "Set the Red in RGB.",
+    "Green",
+    "Set the Green in RGB.",
+    "Blue",
+    "Set the Blue in RGB."
+  ],
+  "Neon": [
+    "Neon Rainbow Circle", 
+    "Makes the neons rainbow and circle the vehicle you are in",
+    "Neon Rainbow Circle 2", 
+    "A slightly different circle option",
+    "Rate",
+    "Changes how quickly the neons change.",
+    "Neon Color Picker", 
+    "Neon fine tuning !!THESE DO NOT TAKE EFFECT UNLESS YOU CYCLE ONE OF THE NEON MODES!!",
+    "Custom Neon Mode", 
+    "A neon mode you can configure",
+    "Neon Rainbow Custom", 
+    "Makes the neons use the custom mode you design",
+    "Left", 
+    "Right", 
+    "Front", 
+    "Back", 
+    "None",
+    "First Neon",
+    "Set the first neon in sequence.",
+    "Second Neon",
+    "Set the second neon in sequence.",
+    "Third Neon",
+    "Set the third neon in sequence.",
+    "Fourth Neon",
+    "Set the fourth neon in sequence."
+  ]
+}

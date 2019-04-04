@@ -15,6 +15,8 @@ namespace AlsekRGB.Client
         public static PaintMenu Paint { get; private set; }
         public static MiscMenu Misc { get; private set; }
         public static bool DebugMode { get; private set; }
+        
+        public static string LanguageSupport { get; private set; }
 
         public MainMenu()
         {
@@ -27,6 +29,9 @@ namespace AlsekRGB.Client
                 DebugMode = false;
             }
 
+            LanguageSupport = GetResourceMetadata(GetCurrentResourceName(), "language", 0);
+            
+            Dictionaries.LoadDic();
             Tick += NeonMenu.ProcessTask;
             
             MenuController.MenuToggleKey = Control.SelectCharacterMichael;
@@ -37,14 +42,14 @@ namespace AlsekRGB.Client
             MenuController.MenuAlignment = MenuController.MenuAlignmentOption.Right;
 
             // Creating the first menu.
-            Menu Color = new Menu("Color Menu", "By Alsekwolf") { Visible = true };
+            Menu Color = new Menu($"{Dictionaries.LangMain[0]}", "By Alsekwolf") { Visible = false };
             MenuController.AddMenu(Color);
 
             //Adding the paint sub menu
             {
                 Paint = new PaintMenu();
                 Menu PaintMenu = Paint.GetMenu();
-                MenuItem PaintButton = new MenuItem("Paint", "Painters place")
+                MenuItem PaintButton = new MenuItem($"{Dictionaries.LangMain[1]}", $"{Dictionaries.LangMain[2]}")
                 {
                     Label = "→→→"
                 };
@@ -56,7 +61,7 @@ namespace AlsekRGB.Client
             {
                 Neon = new NeonMenu();
                 Menu NeonMenu = Neon.GetMenu();
-                MenuItem NeonButton = new MenuItem("Neons", "Neons are hot")
+                MenuItem NeonButton = new MenuItem($"{Dictionaries.LangMain[3]}", $"{Dictionaries.LangMain[4]}")
                 {
                     Label = "→→→"
                 };
@@ -64,11 +69,11 @@ namespace AlsekRGB.Client
                 MenuController.BindMenuItem(Color, NeonMenu, NeonButton);
             }
             
-            //Adding the misc sub menu
+            //Adding the misc sub menu //
             {
                 Misc = new MiscMenu();
                 Menu MiscMenu = Misc.GetMenu();
-                MenuItem MiscButton = new MenuItem("Miscellaneous & Credits", "Miscellaneous stuff")
+                MenuItem MiscButton = new MenuItem($"{Dictionaries.LangMain[5]}", $"{Dictionaries.LangMain[5]}")
                 {
                     Label = "→→→"
                 };

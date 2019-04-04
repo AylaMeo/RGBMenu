@@ -11,37 +11,37 @@ namespace AlsekRGB.Client
 
         private void CreateMenu()
         {
-           NeonCustomMode = new Menu("Custom Neon Mode", "A neon mode you can configure");
+           NeonCustomMode = new Menu($"{Dictionaries.LangNeon[8]}", $"{Dictionaries.LangNeon[9]}");
             
             #region CustomNeonMode
             
-            MenuCheckboxItem NeonsRainbowCustom = new MenuCheckboxItem("Neon Rainbow Custom", "Makes the neons use the custom mode you design", NeonMenu.NeonsRainbowCustomVar)
+            MenuCheckboxItem NeonsRainbowCustom = new MenuCheckboxItem($"{Dictionaries.LangNeon[10]}", $"{Dictionaries.LangNeon[11]}", NeonMenu.NeonsRainbowCustomVar)
             {
                 Style = MenuCheckboxItem.CheckboxStyle.Tick
             };
             NeonCustomMode.AddMenuItem(NeonsRainbowCustom);
             
             //List for first neon
-            var FirstNeonList = new List<string> { "Left", "Right", "Front", "Back", "None"};
-            MenuListItem FirstNeon = new MenuListItem("First Neon", FirstNeonList, 0, "Set the first neon in sequence.");
+            var FirstNeonList = new List<string> { $"{Dictionaries.LangNeon[12]}", $"{Dictionaries.LangNeon[13]}", $"{Dictionaries.LangNeon[14]}", $"{Dictionaries.LangNeon[15]}", $"{Dictionaries.LangNeon[16]}"};
+            MenuListItem FirstNeon = new MenuListItem($"{Dictionaries.LangNeon[17]}", FirstNeonList, 0, $"{Dictionaries.LangNeon[18]}");
             NeonCustomMode.AddMenuItem(FirstNeon);
             //List for first neon
             
             //List for Second neon
-            var SecondNeonList = new List<string> { "Left", "Right", "Front", "Back", "None"};
-            MenuListItem SecondNeon = new MenuListItem("Second Neon", SecondNeonList, 0, "Set the second neon in sequence.");
+            var SecondNeonList = new List<string> { $"{Dictionaries.LangNeon[12]}", $"{Dictionaries.LangNeon[13]}", $"{Dictionaries.LangNeon[14]}", $"{Dictionaries.LangNeon[15]}", $"{Dictionaries.LangNeon[16]}"};
+            MenuListItem SecondNeon = new MenuListItem($"{Dictionaries.LangNeon[19]}", SecondNeonList, 0, $"{Dictionaries.LangNeon[20]}");
             NeonCustomMode.AddMenuItem(SecondNeon);
             //List for Second neon
             
             //List for Third neon
-            var ThirdNeonList = new List<string> { "Left", "Right", "Front", "Back", "None"};
-            MenuListItem ThirdNeon = new MenuListItem("Third Neon", ThirdNeonList, 0, "Set the third neon in sequence.");
+            var ThirdNeonList = new List<string> { $"{Dictionaries.LangNeon[12]}", $"{Dictionaries.LangNeon[13]}", $"{Dictionaries.LangNeon[14]}", $"{Dictionaries.LangNeon[15]}", $"{Dictionaries.LangNeon[16]}"};
+            MenuListItem ThirdNeon = new MenuListItem($"{Dictionaries.LangNeon[21]}", ThirdNeonList, 0, $"{Dictionaries.LangNeon[22]}");
             NeonCustomMode.AddMenuItem(ThirdNeon);
             //List for Third neon
             
             //List for Fourth neon
-            var FourthNeonList = new List<string> { "Left", "Right", "Front", "Back", "None"};
-            MenuListItem FourthNeon = new MenuListItem("Fourth Neon", FourthNeonList, 0, "Set the fourth neon in sequence.");
+            var FourthNeonList = new List<string> { $"{Dictionaries.LangNeon[12]}", $"{Dictionaries.LangNeon[13]}", $"{Dictionaries.LangNeon[14]}", $"{Dictionaries.LangNeon[15]}", $"{Dictionaries.LangNeon[16]}"};
+            MenuListItem FourthNeon = new MenuListItem($"{Dictionaries.LangNeon[23]}", FourthNeonList, 0, $"{Dictionaries.LangNeon[24]}");
             NeonCustomMode.AddMenuItem(FourthNeon);
             //List for Fourth neon
             
