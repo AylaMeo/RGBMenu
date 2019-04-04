@@ -15,40 +15,22 @@ namespace AlsekRGB.Client
         public static PaintMenu Paint { get; private set; }
         public static MiscMenu Misc { get; private set; }
         public static bool DebugMode { get; private set; }
-
-
-        #region Lang
-
-        #region MainMenu
-        public static string MainMenuTitle { get; private set; }
-        public static string PaintMenuTitle = "0";
-        public static string PaintMenuDesc = "0";
-        public static string NeonMenuTitle  = "0";
-        public static string NeonMenuDesc  = "0";
-        public static string MiscMenuTitle  = "0";
-        public static string MiscMenuDesc  = "0";
-        #endregion
-
-        #region Paint Menu
-        public static string PaintMenuPrimaryTitle  = "0";
-        public static string PaintMenuPrimaryDesc  = "0";
-        public static string PaintMenuSecondaryTitle  = "0";
-        public static string PaintMenuSecondaryDesc  = "0";
-        public static string PaintMenuRedTitle = "0";
-        public static string PaintMenuRedDesc = "0";
-        public static string PaintMenuBlueTitle = "0";
-        public static string PaintMenuBlueDesc = "0";
-        public static string PaintMenuGreenTitle = "0";
-        public static string PaintMenuGreenDesc = "0";
-
         
-
-        #endregion
-
-        #endregion
+        public static string LanguageSupport { get; private set; }
 
         public MainMenu()
         {
+            if (GetResourceMetadata(GetCurrentResourceName(), "client_debug_mode", 0).ToLower() == "true")
+            {
+                DebugMode = true;
+            }
+            else
+            {
+                DebugMode = false;
+            }
+
+            LanguageSupport = GetResourceMetadata(GetCurrentResourceName(), "language", 0);
+            
             Dictionaries.LoadDic();
             Tick += NeonMenu.ProcessTask;
             

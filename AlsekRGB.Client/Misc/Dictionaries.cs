@@ -19,7 +19,7 @@ namespace AlsekRGB.Client
             {
                 firstTick = false;
 
-                string jsonDataMain = LoadResourceFile(GetCurrentResourceName(), "config/english.json") ?? "{}";
+                string jsonDataMain = LoadResourceFile(GetCurrentResourceName(), MainMenu.LanguageSupport) ?? "{}";
                 try
                 {
                     // load new locations.
@@ -47,7 +47,7 @@ namespace AlsekRGB.Client
                         $"\n\n^1[AlsekNPC] ^7Your language file contains a problem! Error details: {ex.Message}\n\n");
                 }
                 
-                string jsonDataPaint = LoadResourceFile(GetCurrentResourceName(), "config/english.json") ?? "{}";
+                string jsonDataPaint = LoadResourceFile(GetCurrentResourceName(), MainMenu.LanguageSupport) ?? "{}";
                 try
                 {
                     // load new locations.
@@ -75,7 +75,7 @@ namespace AlsekRGB.Client
                         $"\n\n^1[AlsekNPC] ^7Your language file contains a problem! Error details: {ex.Message}\n\n");
                 }
                 
-                string jsonDataNeon = LoadResourceFile(GetCurrentResourceName(), "config/english.json") ?? "{}";
+                string jsonDataNeon = LoadResourceFile(GetCurrentResourceName(), MainMenu.LanguageSupport) ?? "{}";
                 try
                 {
                     // load new locations.
