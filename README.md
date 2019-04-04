@@ -26,12 +26,15 @@ Step 1: Open with F5
 Step 2: Use
 
 ### **Changelog**
-_2.8_
-
-* Added a custom neon mode
+_3.0_
+* 89% of language support is complete
 
 <details>
-  <summary>Old Updates</summary>  
+  <summary>Old Updates</summary>
+_2.8_
+
+* Added a custom neon mode  
+  
 _2.7_
 
 * Updated dependencies, changed to using NuGet for CFX, Changed how debug mode works (also removing the menu items) If you want to enable debug mode now (you probably shouldn't) you just edit the resource.lua.
