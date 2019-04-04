@@ -50,16 +50,16 @@ namespace AlsekRGB.Client
         
         private void CreateMenu()
         {
-            Neons = new Menu("Neons", "Neons are hot");
+            Neons = new Menu($"{Dictionaries.LangMain[3]}", $"{Dictionaries.LangMain[4]}");
             
             
-            MenuCheckboxItem NeonsRainbow = new MenuCheckboxItem("Neon Rainbow Circle", "Makes the neons rainbow and circle the vehicle you are in", NeonsRainbowVar1)
+            MenuCheckboxItem NeonsRainbow = new MenuCheckboxItem($"{Dictionaries.LangNeon[0]}", $"{Dictionaries.LangNeon[1]}", NeonsRainbowVar1)
             {
                 Style = MenuCheckboxItem.CheckboxStyle.Tick
             };
             Neons.AddMenuItem(NeonsRainbow);
             
-            MenuCheckboxItem NeonsRainbow2 = new MenuCheckboxItem("Neon Rainbow Circle 2", "A slightly different circle option", NeonsRainbowVar2)
+            MenuCheckboxItem NeonsRainbow2 = new MenuCheckboxItem($"{Dictionaries.LangNeon[2]}", $"{Dictionaries.LangNeon[3]}", NeonsRainbowVar2)
             {
                 Style = MenuCheckboxItem.CheckboxStyle.Tick
             };
@@ -92,7 +92,7 @@ namespace AlsekRGB.Client
                 }
                 return AwaitDelayVar.ToString();
             }
-            MenuDynamicListItem AwaitDelayList = new MenuDynamicListItem("Rate", "300", AwaitDelayDyn, "Changes how quickly the neons change.");
+            MenuDynamicListItem AwaitDelayList = new MenuDynamicListItem($"{Dictionaries.LangNeon[4]}", "300", AwaitDelayDyn, $"{Dictionaries.LangNeon[5]}");
             Neons.AddMenuItem(AwaitDelayList);
             // AwaitDelay Dynamic List
             
@@ -100,7 +100,7 @@ namespace AlsekRGB.Client
             {
                 NeonColor = new NeonChanger();
                 Menu NeonChanger = NeonColor.GetMenu();
-                MenuItem NeonButton = new MenuItem("Neon Color Picker", "Neon fine tuning !!THESE DO NOT TAKE EFFECT UNLESS YOU CYCLE ONE OF THE NEON MODES!!")
+                MenuItem NeonButton = new MenuItem($"{Dictionaries.LangNeon[6]}", $"{Dictionaries.LangNeon[7]}")
                 {
                     Label = "→→→"
                 };
@@ -112,7 +112,7 @@ namespace AlsekRGB.Client
             {
                 NeonCustomMode = new NeonCustom();
                 Menu NeonCustom = NeonCustomMode.GetMenu();
-                MenuItem NeonCustomButton = new MenuItem("Custom Neon Mode", "A custom neon mode you can setup")
+                MenuItem NeonCustomButton = new MenuItem($"{Dictionaries.LangNeon[8]}", $"{Dictionaries.LangNeon[9]}")
                 {
                     Label = "→→→"
                 };

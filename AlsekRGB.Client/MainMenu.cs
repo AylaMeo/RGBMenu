@@ -15,32 +15,31 @@ namespace AlsekRGB.Client
         public static PaintMenu Paint { get; private set; }
         public static MiscMenu Misc { get; private set; }
         public static bool DebugMode { get; private set; }
-        public static bool FirstTick { get; private set; } = true;
 
 
         #region Lang
 
         #region MainMenu
         public static string MainMenuTitle { get; private set; }
-        public static string PaintMenuTitle { get; private set; }
-        public static string PaintMenuDesc { get; private set; }
-        public static string NeonMenuTitle { get; private set; }
-        public static string NeonMenuDesc { get; private set; }
-        public static string MiscMenuTitle { get; private set; }
-        public static string MiscMenuDesc { get; private set; }
+        public static string PaintMenuTitle = "0";
+        public static string PaintMenuDesc = "0";
+        public static string NeonMenuTitle  = "0";
+        public static string NeonMenuDesc  = "0";
+        public static string MiscMenuTitle  = "0";
+        public static string MiscMenuDesc  = "0";
         #endregion
 
         #region Paint Menu
-        public static string PaintMenuPrimaryTitle { get; private set; }
-        public static string PaintMenuPrimaryDesc { get; private set; }
-        public static string PaintMenuSecondaryTitle { get; private set; }
-        public static string PaintMenuSecondaryDesc { get; private set; }
-        public static string PaintMenuRedTitle { get; private set; }
-        public static string PaintMenuRedDesc { get; private set; }
-        public static string PaintMenuBlueTitle { get; private set; }
-        public static string PaintMenuBlueDesc { get; private set; }
-        public static string PaintMenuGreenTitle { get; private set; }
-        public static string PaintMenuGreenDesc { get; private set; }
+        public static string PaintMenuPrimaryTitle  = "0";
+        public static string PaintMenuPrimaryDesc  = "0";
+        public static string PaintMenuSecondaryTitle  = "0";
+        public static string PaintMenuSecondaryDesc  = "0";
+        public static string PaintMenuRedTitle = "0";
+        public static string PaintMenuRedDesc = "0";
+        public static string PaintMenuBlueTitle = "0";
+        public static string PaintMenuBlueDesc = "0";
+        public static string PaintMenuGreenTitle = "0";
+        public static string PaintMenuGreenDesc = "0";
 
         
 
@@ -50,40 +49,7 @@ namespace AlsekRGB.Client
 
         public MainMenu()
         {
-            if (FirstTick)
-            {
-                FirstTick = false;
-                if (GetResourceMetadata(GetCurrentResourceName(), "client_debug_mode", 0).ToLower() == "true")
-                {
-                    DebugMode = true; 
-                }
-                else
-                {
-                    DebugMode = false;
-                }
-
-
-                MainMenuTitle = GetResourceMetadata(GetCurrentResourceName(), "MainMenuTitle", 0);
-                PaintMenuTitle = GetResourceMetadata(GetCurrentResourceName(), "PaintMenuTitle", 0);
-                PaintMenuDesc = GetResourceMetadata(GetCurrentResourceName(), "PaintMenuDesc", 0);
-                NeonMenuTitle = GetResourceMetadata(GetCurrentResourceName(), "NeonMenuTitle", 0);
-                NeonMenuDesc = GetResourceMetadata(GetCurrentResourceName(), "NeonMenuDesc", 0);
-                MiscMenuTitle = GetResourceMetadata(GetCurrentResourceName(), "MiscMenuTitle", 0);
-                MiscMenuDesc = GetResourceMetadata(GetCurrentResourceName(), "MiscMenuDesc", 0);
-                
-                PaintMenuPrimaryTitle = GetResourceMetadata(GetCurrentResourceName(), "PaintMenuPrimaryTitle", 0);
-                PaintMenuPrimaryDesc = GetResourceMetadata(GetCurrentResourceName(), "PaintMenuPrimaryDesc", 0);
-                PaintMenuSecondaryTitle = GetResourceMetadata(GetCurrentResourceName(), "PaintMenuSecondaryTitle", 0);
-                PaintMenuSecondaryDesc = GetResourceMetadata(GetCurrentResourceName(), "PaintMenuSecondaryDesc", 0);
-                PaintMenuRedTitle = GetResourceMetadata(GetCurrentResourceName(), "PaintMenuRedTitle", 0);
-                PaintMenuRedDesc = GetResourceMetadata(GetCurrentResourceName(), "PaintMenuRedDesc", 0);
-                PaintMenuBlueTitle = GetResourceMetadata(GetCurrentResourceName(), "PaintMenuBlueTitle", 0);
-                PaintMenuBlueDesc = GetResourceMetadata(GetCurrentResourceName(), "PaintMenuBlueDesc", 0);
-                PaintMenuGreenTitle = GetResourceMetadata(GetCurrentResourceName(), "PaintMenuGreenTitle", 0);
-                PaintMenuGreenDesc = GetResourceMetadata(GetCurrentResourceName(), "PaintMenuGreenDesc", 0);
-            }
-            
-
+            Dictionaries.LoadDic();
             Tick += NeonMenu.ProcessTask;
             
             MenuController.MenuToggleKey = Control.SelectCharacterMichael;
@@ -94,14 +60,14 @@ namespace AlsekRGB.Client
             MenuController.MenuAlignment = MenuController.MenuAlignmentOption.Right;
 
             // Creating the first menu.
-            Menu Color = new Menu($"{MainMenuTitle}", "By Alsekwolf") { Visible = true };
+            Menu Color = new Menu($"{Dictionaries.LangMain[0]}", "By Alsekwolf") { Visible = false };
             MenuController.AddMenu(Color);
 
             //Adding the paint sub menu
             {
                 Paint = new PaintMenu();
                 Menu PaintMenu = Paint.GetMenu();
-                MenuItem PaintButton = new MenuItem($"{PaintMenuTitle}", $"{PaintMenuDesc}")
+                MenuItem PaintButton = new MenuItem($"{Dictionaries.LangMain[1]}", $"{Dictionaries.LangMain[2]}")
                 {
                     Label = "→→→"
                 };
@@ -113,7 +79,7 @@ namespace AlsekRGB.Client
             {
                 Neon = new NeonMenu();
                 Menu NeonMenu = Neon.GetMenu();
-                MenuItem NeonButton = new MenuItem($"{NeonMenuTitle}", $"{NeonMenuDesc}")
+                MenuItem NeonButton = new MenuItem($"{Dictionaries.LangMain[3]}", $"{Dictionaries.LangMain[4]}")
                 {
                     Label = "→→→"
                 };
@@ -121,11 +87,11 @@ namespace AlsekRGB.Client
                 MenuController.BindMenuItem(Color, NeonMenu, NeonButton);
             }
             
-            //Adding the misc sub menu
+            //Adding the misc sub menu //
             {
                 Misc = new MiscMenu();
                 Menu MiscMenu = Misc.GetMenu();
-                MenuItem MiscButton = new MenuItem($"{MiscMenuTitle}", $"{MiscMenuDesc}")
+                MenuItem MiscButton = new MenuItem($"{Dictionaries.LangMain[5]}", $"{Dictionaries.LangMain[5]}")
                 {
                     Label = "→→→"
                 };
